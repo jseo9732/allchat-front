@@ -1,0 +1,11 @@
+.homeContainer {
+  margin-left: 400px;
+  text-align: center;
+}
+
+.homeTitle {
+  font-size: 30px;
+  line-height: 700px;
+  font-weight: bold;
+  color: #19d157;
+}
