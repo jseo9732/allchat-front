@@ -1,13 +1,22 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "../pages/Home";
+import { Home, Login, ChatList } from "../pages/PagesIndex";
 
-export default function AppRouter() {
+export default function AppRouter({ isLoggedIn }) {
   return (
     <>
       <BrowserRouter>
+        {isLoggedIn && <ChatList />}
         <Switch>
-          <Route exact path="/" component={Home} />
+          {isLoggedIn ? (
+            <>
+              <Route exact path="/" component={Home} />
+            </>
+          ) : (
+            <>
+              <Route exact path="/" component={Login} />
+            </>
+          )}
         </Switch>
       </BrowserRouter>
     </>

@@ -1,11 +1,10 @@
 import AppRouter from "./Router";
+import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <>
-      <AppRouter />
+      <AppRouter isLoggedIn="true" />
     </>
   );
 }
-
-export default App;
