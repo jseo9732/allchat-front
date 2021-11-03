@@ -1,10 +1,10 @@
-import "./ChatRoom.css";
+import "./ChatRoomPreview.css";
 import { useHistory } from "react-router-dom";
 
 export default function ChatRoom() {
   const history = useHistory();
   const onclick = () => {
-    history.push("/chatRoom/:roomid");
+    history.push("/chatRoom");
   };
   return (
     <div className="chatContainer" onClick={onclick}>
