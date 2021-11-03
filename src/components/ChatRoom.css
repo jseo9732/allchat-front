@@ -10,10 +10,6 @@
   background-color: #e6e5ea;
 }
 
-.chatContainer:visited {
-  background-color: yellow;
-}
-
 .chatNum {
   text-align: center;
   font-size: 20px;
