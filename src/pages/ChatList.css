@@ -1,0 +1,57 @@
+.chatListContainer {
+  width: 400px;
+  height: 700px;
+  border-right: 1px solid lightgrey;
+  background-color: white;
+  display: inline-block;
+  position: absolute;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow-x: hidden;
+}
+
+.TitleContainer {
+  padding: 30px;
+}
+
+.chatListTitle {
+  display: inline-block;
+  margin-right: 260px;
+  cursor: pointer;
+}
+
+.chatIcon {
+  width: 25px;
+}
+
+.menuTab {
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+}
+
+.rowChatListContainer {
+  height: 530px;
+  display: flex;
+}
+
+.allchatList {
+  width: 400px;
+  height: 530px;
+  overflow: auto;
+}
+
+.enterchatList {
+  width: 400px;
+  height: 530px;
+  overflow: auto;
+}
+
+.toggleBtnContainer {
+  height: 78px;
+  display: flex;
+  text-align: center;
+}
+
+.toggleBtn {
+  width: 200px;
+}
