@@ -20,6 +20,18 @@ export default function ChatList() {
     history.push("/addChat");
   };
 
+  const slide_L = () =>
+    document.getElementById("slider").scrollBy({
+      top: 0,
+      left: -400,
+      behavior: "smooth",
+    });
+  const slide_R = () =>
+    document.getElementById("slider").scrollBy({
+      top: 0,
+      left: 400,
+      behavior: "smooth",
+    });
   return (
     <>
       <div className="chatListContainer">
@@ -31,12 +43,12 @@ export default function ChatList() {
             onClick={onChatAddClick}
             onMouseOver={onMouseOver}
             onMouseOut={onMouseOut}
-            className="chatIcon"
+            className="addChatIcon"
             alt="chat_icon"
             src={src}
           />
         </div>
-        <div className="rowChatListContainer">
+        <div id="slider" className="rowChatListContainer">
           <div className="allchatList">
             <ChatRoom />
             <ChatRoom />
@@ -65,8 +77,12 @@ export default function ChatList() {
           </div>
         </div>
         <div className="toggleBtnContainer">
-          <div className="toggleBtn">전체 목록</div>
-          <div className="toggleBtn">참여중인 방</div>
+          <div className="toggleBtn" onClick={slide_L}>
+            전체 목록
+          </div>
+          <div className="toggleBtn" onClick={slide_R}>
+            참여중인 방
+          </div>
         </div>
       </div>
     </>
