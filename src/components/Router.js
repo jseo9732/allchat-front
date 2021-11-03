@@ -6,11 +6,13 @@ export default function AppRouter({ isLoggedIn }) {
   return (
     <>
       <BrowserRouter>
-        {isLoggedIn && <ChatList />}
         <Switch>
           {isLoggedIn ? (
             <>
-              <Route exact path="/" component={Home} />
+              <div className="firstContainer">
+                <ChatList />
+                <Route exact path="/" component={Home} />
+              </div>
             </>
           ) : (
             <>
