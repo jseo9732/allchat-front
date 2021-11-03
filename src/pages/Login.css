@@ -2,6 +2,8 @@
   padding: 80px 50px;
   text-align: center;
   font-size: 25px;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .title {
