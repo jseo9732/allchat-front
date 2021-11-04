@@ -1,0 +1,63 @@
+.chatRoomContainer {
+  width: 800px;
+}
+
+.chatRoomTopBar {
+  height: 92px;
+  padding: 30px;
+  display: flex;
+  text-align: center;
+  box-shadow: 0 0 15px #dedede;
+}
+
+.chatRoomBack {
+  width: 50px;
+}
+
+.chatRoomTitleContainer {
+  width: 640px;
+}
+
+.chatRoomTitle {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.chatRoomNum {
+  font-size: 20px;
+}
+
+.chatRoomMenu {
+  width: 50px;
+}
+
+.chatContents {
+  height: 530px;
+}
+
+.chatInputContainer {
+  height: 78px;
+  padding: 10px 30px;
+}
+
+.chatInput {
+  width: 660px;
+  height: 58px;
+  margin-right: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.inputBtn {
+  width: 70px;
+  height: 50px;
+  background-color: #00cc45;
+  border: 0;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.inputBtn:hover {
+  background-color: #00ff56;
+}
