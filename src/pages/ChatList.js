@@ -90,12 +90,12 @@ export default function ChatList() {
           </div>
         </div>
         <div className="toggleBtnContainer">
-          <div className="toggleBtn" onClick={onAllChatClick}>
+          <div className="allChatBtn" onClick={onAllChatClick}>
             {/* <i className="fas fa-comment fa-2x"></i> */}
             <i className="far fa-comment fa-2x"></i>
             <div>전체 목록</div>
           </div>
-          <div className="toggleBtn" onClick={onEnterChatClick}>
+          <div className="enterChatBtn" onClick={onEnterChatClick}>
             <i className="far fa-comments fa-2x"></i>
             {/* <i className="fas fa-comments fa-2x"></i> */}
             <div>참여중인 방</div>
