@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ChatRoomPreview from "../components/ChatRoomPreview";
 import "./ChatList.css";
 
 export default function ChatList() {
-  const [src, setSrc] = useState("/image/chat_white.png");
+  const [addImgSrc, setaddImgSrc] = useState("/image/chat_white.png");
   const onMouseOver = () => {
-    setSrc("/image/chat_black.png");
+    setaddImgSrc("/image/chat_black.png");
   };
   const onMouseOut = () => {
-    setSrc("/image/chat_white.png");
+    setaddImgSrc("/image/chat_white.png");
   };
+
+  const [btnImg, setbtnImg] = useState(false);
+  const listener = () => {
+    setbtnImg(document.getElementById("slider").scrollLeft > 200);
+  };
+  useEffect(() => {
+    document.getElementById("slider").addEventListener("scroll", listener);
+  }, []);
 
   const history = useHistory();
   const onHomeClick = () => {
@@ -23,14 +31,14 @@ export default function ChatList() {
   const onAllChatClick = () => {
     document.getElementById("slider").scrollBy({
       top: 0,
-      left: -400,
+      left: -410,
       behavior: "smooth",
     });
   };
   const onEnterChatClick = () => {
     document.getElementById("slider").scrollBy({
       top: 0,
-      left: 400,
+      left: 410,
       behavior: "smooth",
     });
   };
@@ -48,7 +56,7 @@ export default function ChatList() {
             onMouseOut={onMouseOut}
             className="addChatIcon"
             alt="chat_icon"
-            src={src}
+            src={addImgSrc}
           />
         </div>
         <div id="slider" className="rowChatListContainer">
@@ -91,14 +99,37 @@ export default function ChatList() {
         </div>
         <div className="toggleBtnContainer">
           <div className="allChatBtn" onClick={onAllChatClick}>
-            {/* <i className="fas fa-comment fa-2x"></i> */}
-            <i className="far fa-comment fa-2x"></i>
+            {btnImg ? (
+              <img
+                className="ChatBtnImg"
+                src="/image/comment-regular.svg"
+                alt="전체 목록"
+              />
+            ) : (
+              <img
+                className="ChatBtnImg"
+                src="/image/comment-solid.svg"
+                alt="전체 목록"
+              />
+            )}
             <div>전체 목록</div>
           </div>
           <div className="enterChatBtn" onClick={onEnterChatClick}>
-            <i className="far fa-comments fa-2x"></i>
-            {/* <i className="fas fa-comments fa-2x"></i> */}
-            <div>참여중인 방</div>
+            {btnImg ? (
+              <img
+                className="ChatBtnImg"
+                src="/image/comments-solid.svg"
+                alt="참여 중인 방"
+              />
+            ) : (
+              <img
+                className="ChatBtnImg"
+                src="/image/comments-regular.svg"
+                alt="참여 중인 방"
+              />
+            )}
+
+            <div>참여 중인 방</div>
           </div>
         </div>
       </div>
