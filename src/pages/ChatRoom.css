@@ -44,6 +44,69 @@
 
 .chatContents {
   height: 530px;
+  position: relative;
+}
+
+#chat-box {
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.sent_msg {
+  width: 740px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+  margin-top: 10px;
+}
+
+.sent_msg p {
+  padding: 5px 10px 5px 12px;
+  max-width: 380px;
+  margin-left: 5px;
+  background: #00cc45 none repeat scroll 0 0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  word-wrap: break-word;
+}
+
+.received_msg {
+  width: 740px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.received_msg b {
+  font-size: 13px;
+  width: 100%;
+}
+
+.received_msg p {
+  background: #e5e6ea none repeat scroll 0 0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: black;
+  padding: 5px 10px 5px 12px;
+  max-width: 380px;
+  margin-top: 5px;
+  margin-right: 5px;
+  word-wrap: break-word;
+}
+
+.date_time {
+  color: #747474;
+  display: block;
+  font-size: 10px;
+  margin: 8px 0 0;
 }
 
 .chatInputContainer {
