@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import ChatRoomPreview from "../components/ChatRoomPreview";
+import EnterChatRoomPreview from "../components/EnterChatRoomPreview";
+import AllChatRoomPreview from "../components/AllChatRoomPreview";
 import "./ChatList.css";
 
 export default function ChatList() {
@@ -61,40 +62,40 @@ export default function ChatList() {
         </div>
         <div id="slider" className="rowChatListContainer">
           <div className="allchatList">
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
+            <AllChatRoomPreview />
           </div>
           <div className="enterchatList">
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
-            <ChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
+            <EnterChatRoomPreview />
           </div>
         </div>
         <div className="toggleBtnContainer">
