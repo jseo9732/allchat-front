@@ -7,11 +7,17 @@
   padding: 30px;
   display: flex;
   text-align: center;
-  box-shadow: 0 0 15px #dedede;
+  box-shadow: 5px 5px 15px #dedede;
 }
 
-.chatRoomBack {
+.chatRoomBackContainer {
   width: 50px;
+}
+
+.chatRoomImg {
+  margin-top: 6px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .chatRoomTitleContainer {
@@ -19,13 +25,17 @@
 }
 
 .chatRoomTitle {
-  font-size: 25px;
+  display: inline-block;
+  font-size: 20px;
   font-weight: bold;
-  margin-right: 10px;
+  margin-top: 3px;
+  margin-right: 5px;
 }
 
 .chatRoomNum {
+  margin-top: 3px;
   font-size: 20px;
+  color: gray;
 }
 
 .chatRoomMenu {
@@ -41,23 +51,31 @@
   padding: 10px 30px;
 }
 
+.chatInputForm {
+  display: flex;
+}
+
 .chatInput {
-  width: 660px;
+  width: 680px;
   height: 58px;
+  resize: none;
   margin-right: 10px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid gray;
 }
 
 .inputBtn {
-  width: 70px;
-  height: 50px;
+  width: 50px;
+  height: 40px;
   background-color: #00cc45;
   border: 0;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .inputBtn:hover {
-  background-color: #00ff56;
+  background-color: #00a337;
+  cursor: pointer;
 }
