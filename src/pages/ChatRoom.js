@@ -117,7 +117,7 @@ export default function ChatRoom() {
   return (
     <div className="chatRoomContainer">
       <div className="chatRoomTopBar">
-        <div className="chatRoomBackContainer">
+        <div className="chatRoomImgContainer">
           <img
             onClick={onBackClick}
             className="chatRoomImg"
@@ -129,8 +129,7 @@ export default function ChatRoom() {
           <span className="chatRoomTitle">들어오세요~</span>
           <span className="chatRoomNum">(3)</span>
         </div>
-
-        <div className="chatRoomMenu">
+        <div className="chatRoomImgContainer">
           <img
             className="chatRoomImg"
             src="/image/bars-solid.svg"
