@@ -104,33 +104,33 @@ export default function ChatList() {
               <img
                 className="ChatBtnImg"
                 src="/image/comment-regular.svg"
-                alt="전체 목록"
+                alt="전체 채팅"
               />
             ) : (
               <img
                 className="ChatBtnImg"
                 src="/image/comment-solid.svg"
-                alt="전체 목록"
+                alt="전체 채팅"
               />
             )}
-            <div>전체 목록</div>
+            <div>전체 채팅</div>
           </div>
           <div className="enterChatBtn" onClick={onEnterChatClick}>
             {btnImg ? (
               <img
                 className="ChatBtnImg"
                 src="/image/comments-solid.svg"
-                alt="참여 중인 방"
+                alt="참여 채팅"
               />
             ) : (
               <img
                 className="ChatBtnImg"
                 src="/image/comments-regular.svg"
-                alt="참여 중인 방"
+                alt="참여 채팅"
               />
             )}
 
-            <div>참여 중인 방</div>
+            <div>참여 채팅</div>
           </div>
         </div>
       </div>
