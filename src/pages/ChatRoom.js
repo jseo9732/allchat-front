@@ -1,4 +1,5 @@
 // import { useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import "./ChatRoom.css";
 
@@ -113,7 +114,10 @@ export default function ChatRoom() {
   //     }
   //   });
   // });
-
+  const [showSideMenu, setShowSideMenu] = useState(false);
+  const onSideMenuClick = () => {
+    setShowSideMenu(!showSideMenu);
+  };
   return (
     <div className="chatRoomContainer">
       <div className="chatRoomTopBar">
@@ -131,112 +135,156 @@ export default function ChatRoom() {
         </div>
         <div className="chatRoomImgContainer">
           <img
+            onClick={onSideMenuClick}
             className="chatRoomImg"
             src="/image/bars-solid.svg"
             alt="채팅 메뉴"
           />
         </div>
       </div>
-      <div className="chatContents">
-        <div id="chat-box">
-          <div className="sent_box">
-            <div className="sent_msg">
-              <p>내가 보낸 첫 문자</p>
-              <span className="date_time">11:05 | 10:51</span>
+      <div className="sideMenuFlex">
+        {showSideMenu && (
+          <div onClick={onSideMenuClick} className="sideMenuBlank"></div>
+        )}
+
+        <div className="chatContents">
+          <div id="chat-box">
+            <div className="sent_box">
+              <div className="sent_msg">
+                <p>내가 보낸 첫 문자</p>
+                <span className="date_time">11:05 | 10:51</span>
+              </div>
             </div>
-          </div>
-          <div className="sent_box">
-            <div className="sent_msg">
-              <p>내가 보낸 두번째 문자222222</p>
-              <span className="date_time">11:05 | 10:52</span>
+            <div className="sent_box">
+              <div className="sent_msg">
+                <p>내가 보낸 두번째 문자222222</p>
+                <span className="date_time">11:05 | 10:52</span>
+              </div>
             </div>
-          </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>형우</b>
-              <p>형우가 보낸 첫 번째 채팅</p>
-              <span className="date_time">11:05 | 10:53</span>
+            <div className="received_box">
+              <div className="received_msg">
+                <b>형우</b>
+                <p>형우가 보낸 첫 번째 채팅</p>
+                <span className="date_time">11:05 | 10:53</span>
+              </div>
             </div>
-          </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>형우</b>
-              <p>형우가 보낸 두 번째 채팅222</p>
-              <span className="date_time">11:05 | 10:53</span>
+            <div className="received_box">
+              <div className="received_msg">
+                <b>형우</b>
+                <p>형우가 보낸 두 번째 채팅222</p>
+                <span className="date_time">11:05 | 10:53</span>
+              </div>
             </div>
-          </div>
-          <div className="sent_box">
-            <div className="sent_msg">
-              <p>
-                내가 보낸 세 번째 문자
-                길게~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </p>
-              <span className="date_time">11:05 | 10:52</span>
+            <div className="sent_box">
+              <div className="sent_msg">
+                <p>
+                  내가 보낸 세 번째 문자
+                  길게~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                </p>
+                <span className="date_time">11:05 | 10:52</span>
+              </div>
             </div>
-          </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>형우</b>
-              <p>
-                형우가 보낸 세 번째
-                채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </p>
-              <span className="date_time">11:05 | 10:53</span>
+            <div className="received_box">
+              <div className="received_msg">
+                <b>형우</b>
+                <p>
+                  형우가 보낸 세 번째
+                  채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                </p>
+                <span className="date_time">11:05 | 10:53</span>
+              </div>
             </div>
-          </div>
-          <div className="NotiBox">
-            <p>정수님이 퇴장하였습니다.</p>
-          </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>형우</b>
-              <p>
-                형우가 보낸 세 번째
-                채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </p>
-              <span className="date_time">11:05 | 10:53</span>
+            <div className="NotiBox">
+              <p>정수님이 퇴장하였습니다.</p>
             </div>
-          </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>형우</b>
-              <p>
-                형우가 보낸 세 번째
-                채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </p>
-              <span className="date_time">11:05 | 10:53</span>
+            <div className="received_box">
+              <div className="received_msg">
+                <b>형우</b>
+                <p>
+                  형우가 보낸 세 번째
+                  채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                </p>
+                <span className="date_time">11:05 | 10:53</span>
+              </div>
             </div>
-          </div>
-          <div className="NotiBox">
-            <p>정수님이 입장하였습니다.</p>
-          </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>정수</b>
-              <p>
-                정수가 보낸 첫 번째
-                채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </p>
-              <span className="date_time">11:05 | 10:59</span>
+            <div className="received_box">
+              <div className="received_msg">
+                <b>형우</b>
+                <p>
+                  형우가 보낸 세 번째
+                  채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                </p>
+                <span className="date_time">11:05 | 10:53</span>
+              </div>
             </div>
-          </div>
-          <div className="NotiBox">
-            <p>정수님이 퇴장하였습니다.</p>
+            <div className="NotiBox">
+              <p>정수님이 입장하였습니다.</p>
+            </div>
+            <div className="received_box">
+              <div className="received_msg">
+                <b>정수</b>
+                <p>
+                  정수가 보낸 첫 번째
+                  채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                </p>
+                <span className="date_time">11:05 | 10:59</span>
+              </div>
+            </div>
+            <div className="NotiBox">
+              <p>정수님이 퇴장하였습니다.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="chatInputContainer">
-        <form className="chatInputForm">
-          <textarea
-            id="chatValue"
-            className="chatInput"
-            type="text"
-            autoFocus
-          />
-          <button id="submitBtn" className="inputBtn" type="submit">
-            전송
-          </button>
-        </form>
+        <div className="chatInputContainer">
+          <form className="chatInputForm">
+            <textarea
+              id="chatValue"
+              className="chatInput"
+              type="text"
+              autoFocus
+            />
+            <button id="submitBtn" className="inputBtn" type="submit">
+              전송
+            </button>
+          </form>
+        </div>
+
+        <div
+          className={
+            showSideMenu ? "sideMenuContainer active" : "sideMenuContainer"
+          }
+        >
+          <div className="sideMenu">
+            <div className="chatMemberContainer">
+              <div className="chatMemberTitle">대화 상대</div>
+              <div className="chatMemberBox">
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+                <div className="chatMember">형우</div>
+                <div className="chatMember">지수</div>
+              </div>
+            </div>
+            <div className="btnBox">
+              <button>나가기</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
