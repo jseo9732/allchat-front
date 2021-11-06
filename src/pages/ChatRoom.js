@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useHistory } from "react-router";
 import "./ChatRoom.css";
 
@@ -184,15 +184,8 @@ export default function ChatRoom() {
               <span className="date_time">11:05 | 10:53</span>
             </div>
           </div>
-          <div className="received_box">
-            <div className="received_msg">
-              <b>형우</b>
-              <p>
-                형우가 보낸 세 번째
-                채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              </p>
-              <span className="date_time">11:05 | 10:53</span>
-            </div>
+          <div className="NotiBox">
+            <p>정수님이 퇴장하였습니다.</p>
           </div>
           <div className="received_box">
             <div className="received_msg">
@@ -213,6 +206,22 @@ export default function ChatRoom() {
               </p>
               <span className="date_time">11:05 | 10:53</span>
             </div>
+          </div>
+          <div className="NotiBox">
+            <p>정수님이 입장하였습니다.</p>
+          </div>
+          <div className="received_box">
+            <div className="received_msg">
+              <b>정수</b>
+              <p>
+                정수가 보낸 첫 번째
+                채팅~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              </p>
+              <span className="date_time">11:05 | 10:59</span>
+            </div>
+          </div>
+          <div className="NotiBox">
+            <p>정수님이 퇴장하였습니다.</p>
           </div>
         </div>
       </div>
