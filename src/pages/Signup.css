@@ -1,0 +1,65 @@
+.SignupContainer {
+  padding: 80px 50px;
+  height: 700px;
+  text-align: center;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.Signuptitle {
+  margin-bottom: 50px;
+  color: #00cc45;
+}
+
+.SignupForm {
+  width: 314px;
+  margin: 0 auto;
+}
+
+.SignupEmail,
+.SignupPassword {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.SignupForm label {
+  display: inline-block;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.SignupForm input {
+  width: 314px;
+  height: 50px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.SignupForm input:focus {
+  outline: 1px solid #00cc45;
+}
+
+.Warning {
+  font-size: 13px;
+  color: red;
+}
+
+.SignupBtn {
+  border: 0;
+  background-color: #00cc45;
+  padding: 10px;
+  width: 300px;
+  height: 45px;
+  border-radius: 5px;
+  color: white;
+}
+
+.SignupBtn:hover {
+  background-color: #19d157;
+}
+
+.toLoginBtn {
+  font-size: 13px;
+  color: #3f3f3f;
+}

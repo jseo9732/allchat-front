@@ -32,7 +32,7 @@ export default function Login() {
           <img alt="카카오 로그인" src="/image/kakao_login_medium_wide.png" />
         </a>
       </form>
-      <Link to="/signup" className="signupBtn">
+      <Link to="/signup" className="toSignupBtn">
         회원가입
       </Link>
     </div>

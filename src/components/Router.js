@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
   Home,
   Login,
+  Signup,
   ChatList,
   AddChatRoom,
   ChatRoom,
@@ -25,6 +26,7 @@ export default function AppRouter({ isLoggedIn }) {
           ) : (
             <>
               <Route exact path="/" component={Login} />
+              <Route exact path="/signup" component={Signup} />
             </>
           )}
         </Switch>
