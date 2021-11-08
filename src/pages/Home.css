@@ -1,12 +1,27 @@
 .homeContainer {
   width: 800px;
   height: 700px;
-  text-align: center;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .homeTitle {
   font-size: 30px;
-  line-height: 700px;
   font-weight: bold;
   color: #19d157;
+}
+
+.LogoutBtn {
+  padding: 7px;
+  background-color: #19d157;
+  border: 0;
+  border-radius: 5px;
+  font-size: 13px;
+  color: white;
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
