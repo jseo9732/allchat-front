@@ -17,8 +17,8 @@
   margin: 0 auto;
 }
 
-.SignupEmail,
-.SignupPassword {
+.SignupUserId,
+.SignupUserPw {
   text-align: left;
   margin-bottom: 30px;
 }

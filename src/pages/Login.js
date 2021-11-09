@@ -8,16 +8,16 @@ export default function Login() {
       <form className="loginForm">
         <input
           className="loginInput"
-          id="Email"
-          name="email"
+          id="userId"
+          name="userId"
           type="text"
-          placeholder="Email"
+          placeholder="ID"
           required
         />
         <input
           className="loginInput"
-          id="PW"
-          name="password"
+          id="userPw"
+          name="userPw"
           type="password"
           placeholder="Password"
           required

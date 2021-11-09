@@ -3,58 +3,58 @@ import { Link } from "react-router-dom";
 import "./Signup.css";
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [isEmailNull, setIsEmailNull] = useState(false);
-  // const [IsEmailOverlap, setIsEmailOverlap] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [isUserIdNull, setIsUserIdNull] = useState(false);
+  // const [isUserIdDup, setIsUserIdDup] = useState(false);
 
-  const onEmailFocusOut = (e) => {
-    setIsEmailNull(e.target.value === "");
+  const onUserIdFocusOut = (e) => {
+    setIsUserIdNull(e.target.value === "");
     // if (e.target.value in 데이터베이스에 있는 아이디){
-    //   setIsEmailOverlap(!IsEmailOverlap)
+    //   setIsUserIdDup(!isUserIdDup)
     // }
   };
-  const onEmailChange = (e) => {
-    setEmail(e.target.value);
+  const onUserIdChange = (e) => {
+    setUserId(e.target.value);
   };
 
-  const [password, setPassword] = useState("");
+  const [userPw, setUserPw] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
-  const onPWChange = (e) => {
-    setPassword(e.target.value);
+  const onUserPwChange = (e) => {
+    setUserPw(e.target.value);
   };
   const onPWCheckBlur = (e) => {
-    setPasswordError(e.target.value !== password);
+    setPasswordError(e.target.value !== userPw);
   };
 
   return (
     <div className="SignupContainer">
       <h1 className="Signuptitle">회원가입</h1>
       <form className="SignupForm">
-        <div className="SignupEmail">
-          <label htmlFor="user-email">이메일</label>
+        <div className="SignupUserId">
+          <label htmlFor="user-id">아이디</label>
           <input
-            value={email}
-            name="user-email"
+            value={userId}
+            name="user-id"
             required
-            placeholder="사용할 이메일을 입력하세요"
-            onChange={onEmailChange}
-            onBlur={onEmailFocusOut}
+            placeholder="사용할 아이디를 입력하세요"
+            onChange={onUserIdChange}
+            onBlur={onUserIdFocusOut}
           />
-          {isEmailNull && <div className="Warning">필수 정보입니다.</div>}
+          {isUserIdNull && <div className="Warning">필수 정보입니다.</div>}
           {/* {isEmailOverlap && (
             <div className="Warning">이미 사용 중인 이메일입니다.</div>
           )} */}
         </div>
-        <div className="SignupPassword">
-          <label htmlFor="user-password">비밀번호</label>
+        <div className="SignupUserPw">
+          <label htmlFor="user-pw">비밀번호</label>
           <input
             placeholder="사용할 비밀번호를 입력하세요"
-            name="user-password"
+            name="user-pw"
             type="password"
             required
-            value={password}
-            onChange={onPWChange}
+            value={userPw}
+            onChange={onUserPwChange}
           />
           <label htmlFor="user-password-check">비밀번호 재확인</label>
           <input
@@ -69,8 +69,8 @@ export default function Signup() {
           )}
         </div>
         <div>
-          <button className="SignupBtn" type="submit">
-            가입하기
+          <button className="SignupBtn" type="submit" onClick={onSignupClick}>
+            회원가입
           </button>
         </div>
       </form>
