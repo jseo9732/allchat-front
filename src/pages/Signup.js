@@ -15,7 +15,7 @@ export default function Signup() {
   const onUserIdBlur = (e) => {
     const inputId = e.target.value;
     setIsUserIdNull(inputId === "");
-    setIsUserIdLen(inputId.length > 0 && inputId.length < 2);
+    setIsUserIdLen(inputId !== "" && inputId.length < 2);
     if (inputId.length >= 2) {
       userIdDuplicate(inputId);
     }
@@ -64,7 +64,7 @@ export default function Signup() {
 
   const onUserPwBlur = (e) => {
     setIsUserPwNull(e.target.value === "");
-    setIsUserPwLen(e.target.value.length !== 0 && e.target.value.length < 8);
+    setIsUserPwLen(e.target.value.length !== 0 && e.target.value.length < 4);
   };
 
   const onPWCheckBlur = (e) => {
@@ -134,21 +134,21 @@ export default function Signup() {
             name="user-pw"
             type="password"
             required
-            minLength="8"
+            minLength="4"
             maxLength="16"
             value={userPw}
             onChange={onUserPwChange}
             onBlur={onUserPwBlur}
           />
           {isUserPwNull && <div className="Warning">필수 정보입니다.</div>}
-          {isUserPwLen && <div className="Warning">8~16자만 가능합니다.</div>}
+          {isUserPwLen && <div className="Warning">4~16자만 가능합니다.</div>}
           <label htmlFor="user-password-check">비밀번호 재확인</label>
           <input
             placeholder="비밀번호를 재입력하세요"
             name="user-password-check"
             type="password"
             required
-            minLength="8"
+            minLength="4"
             maxLength="16"
             value={userPwCheck}
             onChange={onUserPwCheckChange}
