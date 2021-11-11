@@ -2,20 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function Login() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
   const [loginFail, setLoginFail] = useState(false);
-
-  function setCookie(cName, cValue, cDay) {
-    const expire = new Date();
-    expire.setDate(expire.getDate() + cDay);
-    let cookies = cName + "=" + escape(cValue) + "; path=/ ";
-    if (typeof cDay != "undefined")
-      cookies += ";expires=" + expire.toGMTString() + ";";
-    document.cookie = cookies;
-  }
+  const cookies = new Cookies();
 
   const onUserIdChange = (e) => {
     setUserId(e.target.value);
@@ -46,7 +39,14 @@ export default function Login() {
       )
         .then((res) => {
           const accessToken = res.data.jwtToken;
-          setCookie("isLogin", accessToken, 30);
+          cookies.set("myToken", accessToken, {
+            path: "/",
+            // expires: new Date(Date.now() + 2592000),
+          });
+
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${accessToken}`;
           document.location.href = "/";
         })
         .catch((err) => {
