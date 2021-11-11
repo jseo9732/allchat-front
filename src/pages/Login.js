@@ -14,10 +14,12 @@ export default function Login() {
 
   const onUserIdChange = (e) => {
     setUserId(e.target.value);
+    setInputNull(false);
   };
 
   const onUserPwChange = (e) => {
     setUserPw(e.target.value);
+    setInputNull(false);
   };
 
   const getToken = async () => {
@@ -47,6 +49,7 @@ export default function Login() {
         document.location.href = "/";
       })
       .catch((err) => {
+        setInputNull(false);
         setLoginFail(!err.response.data.data);
       });
   };
@@ -55,7 +58,8 @@ export default function Login() {
     e.preventDefault();
 
     if (userId === "" || userPw === "") {
-      setInputNull(true);
+      setInputNull(!userId || !userPw);
+      setLoginFail(false);
     } else {
       getToken();
     }
