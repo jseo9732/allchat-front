@@ -5,12 +5,13 @@ import axios from "axios";
 import { useHistory } from "react-router";
 
 export default function Signup() {
+  const history = useHistory();
+
   const [userId, setUserId] = useState("");
   const [isUserIdNull, setIsUserIdNull] = useState(false);
   const [isUserIdLen, setIsUserIdLen] = useState(false);
   const [isUserIdDup, setIsUserIdDup] = useState(false);
   const [isNotUserIdDup, setIsNotUserIdDup] = useState(false);
-  const history = useHistory();
 
   const onUserIdBlur = (e) => {
     const inputId = e.target.value;
@@ -75,10 +76,18 @@ export default function Signup() {
   const onSignupClick = (e) => {
     e.preventDefault();
     setIsUserIdNull(userId === "");
-    setIsUserIdLen(userId.length > 0 && userId.length < 2);
     setIsUserPwNull(userPw === "");
+    setIsUserPwCheckNull(userPwCheck === "");
     setPasswordError(userPwCheck !== userPw);
-    if (isNotUserIdDup && !isUserPwNull && !isUserPwLen && !passwordError) {
+    if (
+      !isUserIdNull &&
+      !isUserIdLen &&
+      isNotUserIdDup &&
+      !isUserPwNull &&
+      !isUserPwLen &&
+      !isUserPwCheckNull &&
+      !passwordError
+    ) {
       axios(
         "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/auth/signup",
         {
