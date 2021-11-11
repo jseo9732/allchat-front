@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import KakaoLogin from "../components/KakaoLogin";
 
 export default function Login() {
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
+  const [inputNull, setInputNull] = useState(false);
   const [loginFail, setLoginFail] = useState(false);
   const cookies = new Cookies();
 
@@ -18,40 +20,44 @@ export default function Login() {
     setUserPw(e.target.value);
   };
 
+  const getToken = async () => {
+    axios(
+      "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          username: userId,
+          password: userPw,
+        },
+      }
+    )
+      .then((res) => {
+        const accessToken = res.data.jwtToken;
+        cookies.set("myToken", accessToken, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 30,
+        });
+
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+        document.location.href = "/";
+      })
+      .catch((err) => {
+        setLoginFail(!err.response.data.data);
+      });
+  };
+
   const onLoginClick = (e) => {
     e.preventDefault();
 
     if (userId === "" || userPw === "") {
-      window.alert("아이디와 비밀번호를 입력해주세요.");
+      setInputNull(true);
     } else {
-      axios(
-        "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            username: userId,
-            password: userPw,
-          },
-        }
-      )
-        .then((res) => {
-          const accessToken = res.data.jwtToken;
-          cookies.set("myToken", accessToken, {
-            path: "/",
-            // expires: new Date(Date.now() + 2592000),
-          });
-
-          axios.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${accessToken}`;
-          document.location.href = "/";
-        })
-        .catch((err) => {
-          setLoginFail(!err.response.data.data);
-        });
+      getToken();
     }
   };
 
@@ -66,6 +72,7 @@ export default function Login() {
           type="text"
           placeholder="ID"
           required
+          autoFocus
           value={userId}
           onChange={onUserIdChange}
         />
@@ -85,16 +92,14 @@ export default function Login() {
             <b>아이디</b>와 <b>비밀번호</b>를 정확히 입력해 주세요.
           </div>
         )}
+        {inputNull && (
+          <div className="Warning">아이디와 비밀번호를 입력해주세요.</div>
+        )}
 
         <button className="loginBtn" type="submit" onClick={onLoginClick}>
           로그인
         </button>
-        <a
-          className="kakaoLogin"
-          href="https://kauth.kakao.com/oauth/authorize?client_id={3e716bc2780a7b5fe1da319c4487c6f9}&redirect_uri={REDIRECT_URI}&response_type=code"
-        >
-          <img alt="카카오 로그인" src="/image/kakao_login_medium_wide.png" />
-        </a>
+        <KakaoLogin />
       </form>
       <Link to="/signup" className="toSignupBtn">
         회원가입
