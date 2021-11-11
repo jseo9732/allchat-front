@@ -19,6 +19,9 @@ export default function Signup() {
     setIsUserIdLen(inputId !== "" && inputId.length < 2);
     if (inputId.length >= 2) {
       userIdDuplicate(inputId);
+    } else {
+      setIsUserIdDup(false);
+      setIsNotUserIdDup(false);
     }
   };
 
