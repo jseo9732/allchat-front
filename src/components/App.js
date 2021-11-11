@@ -1,32 +1,20 @@
 import AppRouter from "./Router";
 import "./App.css";
 import { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [myToken, setmyToken] = useState("");
+  const cookies = new Cookies();
 
-  function getCookie(cName) {
-    cName = cName + "=";
-    let cookieData = document.cookie;
-    let start = cookieData.indexOf(cName);
-    let cValue = "";
-    if (start !== -1) {
-      start += cName.length;
-      var end = cookieData.indexOf(";", start);
-      if (end === -1) end = cookieData.length;
-      cValue = cookieData.substring(start, end);
-    }
-    return unescape(cValue);
+  function getCookie() {
+    const cValue = cookies.get("myToken");
+    setmyToken(cValue);
   }
 
   useEffect(() => {
-    const jwtToken = getCookie("isLogin");
-    setIsLoggedIn(jwtToken);
+    getCookie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  return (
-    <>
-      <AppRouter isLoggedIn={isLoggedIn} />
-    </>
-  );
+  return <AppRouter myToken={myToken} />;
 }
