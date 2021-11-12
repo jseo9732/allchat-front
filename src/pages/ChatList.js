@@ -31,7 +31,7 @@ export default function ChatList({ myToken }) {
   };
 
   const onAllChatClick = () => {
-    getChatRoomsList();
+    getAllChatRoomsList();
     document.getElementById("slider").scrollBy({
       top: 0,
       left: -410,
@@ -39,6 +39,7 @@ export default function ChatList({ myToken }) {
     });
   };
   const onEnterChatClick = () => {
+    getEnterChatRoomsList();
     document.getElementById("slider").scrollBy({
       top: 0,
       left: 410,
@@ -46,8 +47,8 @@ export default function ChatList({ myToken }) {
     });
   };
 
-  const [chatRoomsData, setChatRoomsData] = useState([]);
-  const getChatRoomsList = () => {
+  const [AllchatRoomsData, setAllChatRoomsData] = useState([]);
+  const getAllChatRoomsList = () => {
     axios(
       `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms`,
       {
@@ -59,7 +60,27 @@ export default function ChatList({ myToken }) {
       }
     )
       .then((res) => {
-        setChatRoomsData(res.data.data);
+        setAllChatRoomsData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [EnterchatRoomsData, setEnterChatRoomsData] = useState([]);
+  const getEnterChatRoomsList = () => {
+    axios(
+      `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/participating`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: myToken,
+        },
+      }
+    )
+      .then((res) => {
+        setEnterChatRoomsData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +88,7 @@ export default function ChatList({ myToken }) {
   };
 
   useEffect(() => {
-    getChatRoomsList();
+    getAllChatRoomsList();
   });
 
   return (
@@ -88,7 +109,7 @@ export default function ChatList({ myToken }) {
         </div>
         <div id="slider" className="rowChatListContainer">
           <div className="allchatList">
-            {chatRoomsData.map((chatRoom) => {
+            {AllchatRoomsData.map((chatRoom) => {
               return (
                 <AllChatRoomPreview
                   key={chatRoom.chatRoomId}
@@ -102,22 +123,18 @@ export default function ChatList({ myToken }) {
             })}
           </div>
           <div className="enterchatList">
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
-            <EnterChatRoomPreview />
+            {EnterchatRoomsData.map((chatRoom) => {
+              return (
+                <EnterChatRoomPreview
+                  key={chatRoom.chatRoomId}
+                  chatRoomId={chatRoom.chatRoomId}
+                  masterId={chatRoom.masterId}
+                  participantCount={chatRoom.participantCount}
+                  participantState={chatRoom.participantState}
+                  title={chatRoom.title}
+                />
+              );
+            })}
           </div>
         </div>
         <div className="toggleBtnContainer">
