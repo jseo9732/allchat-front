@@ -291,6 +291,9 @@ export default function ChatRoom(props) {
         <ChatSideMenu
           showSideMenu={showSideMenu}
           enterUSers={enterUSers}
+          userId={userId}
+          chatRoomId={chatRoomId}
+          myToken={myToken}
           isMaster={masterId === Number(userId)}
         />
       </div>
