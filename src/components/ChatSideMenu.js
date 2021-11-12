@@ -1,4 +1,5 @@
-export default function ChatSideMenu({ showSideMenu, enterUSers }) {
+export default function ChatSideMenu({ showSideMenu, enterUSers, isMaster }) {
+  console.log(isMaster);
   return (
     <div
       className={
@@ -19,7 +20,7 @@ export default function ChatSideMenu({ showSideMenu, enterUSers }) {
           </div>
         </div>
         <div className="btnBox">
-          <button>나가기</button>
+          {isMaster ? <button>채팅방 삭제</button> : <button>나가기</button>}
         </div>
       </div>
     </div>

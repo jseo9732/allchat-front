@@ -15,6 +15,7 @@ export default function ChatRoom(props) {
   const {
     chatRoomId,
     masterId,
+    userId,
     participantCount,
     participantState,
     title,
@@ -24,7 +25,6 @@ export default function ChatRoom(props) {
     alert("채팅방이 삭제되었습니다.");
     history.push("/");
   }
-
   // const eventSource = new EventSource(
   //   `http://localhost:9300/chat/roomNum/${roomNum}`
   // );
@@ -288,7 +288,11 @@ export default function ChatRoom(props) {
             </button>
           </form>
         </div>
-        <ChatSideMenu showSideMenu={showSideMenu} enterUSers={enterUSers} />
+        <ChatSideMenu
+          showSideMenu={showSideMenu}
+          enterUSers={enterUSers}
+          isMaster={masterId === Number(userId)}
+        />
       </div>
     </div>
   );

@@ -42,6 +42,7 @@ export default function AllChatRoomPreview({
         state: {
           chatRoomId,
           masterId,
+          userId,
           participantCount,
           participantState,
           title,

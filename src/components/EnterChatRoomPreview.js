@@ -17,6 +17,7 @@ export default function EnterChatRoomPreview({
         state: {
           chatRoomId,
           masterId,
+          userId,
           participantCount,
           participantState,
           title,
