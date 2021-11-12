@@ -6,6 +6,7 @@ export default function Home() {
 
   const onLogoutClick = () => {
     cookies.remove("myToken");
+    cookies.remove("userId");
     document.location.href = "/";
   };
   return (

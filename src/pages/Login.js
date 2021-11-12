@@ -37,15 +37,16 @@ export default function Login() {
       }
     )
       .then((res) => {
+        const userId = res.data.userId;
         const accessToken = res.data.jwtToken;
         cookies.set("myToken", accessToken, {
           path: "/",
           maxAge: 60 * 60 * 24 * 30,
         });
-
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+        cookies.set("userId", userId, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 30,
+        });
         document.location.href = "/";
       })
       .catch((err) => {
