@@ -7,6 +7,7 @@ export default function EnterChatRoomPreview({
   participantCount,
   participantState,
   title,
+  userId,
   myToken,
 }) {
   return (

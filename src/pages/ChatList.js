@@ -5,7 +5,7 @@ import AllChatRoomPreview from "../components/AllChatRoomPreview";
 import "./ChatList.css";
 import axios from "axios";
 
-export default function ChatList({ myToken }) {
+export default function ChatList({ userId, myToken }) {
   const [addImgSrc, setaddImgSrc] = useState("/image/chat_white.png");
   const onMouseOver = () => {
     setaddImgSrc("/image/chat_black.png");
@@ -118,6 +118,7 @@ export default function ChatList({ myToken }) {
                   participantCount={chatRoom.participantCount}
                   participantState={chatRoom.participantState}
                   title={chatRoom.title}
+                  userId={userId}
                   myToken={myToken}
                 />
               );
@@ -133,6 +134,7 @@ export default function ChatList({ myToken }) {
                   participantCount={chatRoom.participantCount}
                   participantState={chatRoom.participantState}
                   title={chatRoom.title}
+                  userId={userId}
                   myToken={myToken}
                 />
               );
