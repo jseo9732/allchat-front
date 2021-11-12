@@ -3,8 +3,9 @@ import { useHistory } from "react-router-dom";
 import EnterChatRoomPreview from "../components/EnterChatRoomPreview";
 import AllChatRoomPreview from "../components/AllChatRoomPreview";
 import "./ChatList.css";
+import axios from "axios";
 
-export default function ChatList() {
+export default function ChatList({ myToken }) {
   const [addImgSrc, setaddImgSrc] = useState("/image/chat_white.png");
   const onMouseOver = () => {
     setaddImgSrc("/image/chat_black.png");
@@ -30,6 +31,7 @@ export default function ChatList() {
   };
 
   const onAllChatClick = () => {
+    getChatRoomsList();
     document.getElementById("slider").scrollBy({
       top: 0,
       left: -410,
@@ -43,6 +45,30 @@ export default function ChatList() {
       behavior: "smooth",
     });
   };
+
+  const [chatRoomsData, setChatRoomsData] = useState([]);
+  const getChatRoomsList = () => {
+    axios(
+      `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: myToken,
+        },
+      }
+    )
+      .then((res) => {
+        setChatRoomsData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getChatRoomsList();
+  });
 
   return (
     <>
@@ -62,22 +88,18 @@ export default function ChatList() {
         </div>
         <div id="slider" className="rowChatListContainer">
           <div className="allchatList">
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
-            <AllChatRoomPreview />
+            {chatRoomsData.map((chatRoom) => {
+              return (
+                <AllChatRoomPreview
+                  key={chatRoom.chatRoomId}
+                  chatRoomId={chatRoom.chatRoomId}
+                  masterId={chatRoom.masterId}
+                  participantCount={chatRoom.participantCount}
+                  participantState={chatRoom.participantState}
+                  title={chatRoom.title}
+                />
+              );
+            })}
           </div>
           <div className="enterchatList">
             <EnterChatRoomPreview />

@@ -16,7 +16,7 @@ export default function AppRouter({ userId, myToken }) {
         {myToken ? (
           <>
             <div className="firstContainer">
-              <ChatList />
+              <ChatList myToken={myToken} />
               <Route exact path="/" component={Home} />
               <Route path="/addChatRoom">
                 <AddChatRoom userId={userId} myToken={myToken} />

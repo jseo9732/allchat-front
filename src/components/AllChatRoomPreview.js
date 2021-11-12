@@ -1,16 +1,29 @@
 import "./ChatRoomPreview.css";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function AllChatRoomPreview() {
-  const history = useHistory();
-  const onclick = () => {
-    history.push("/chatRoom");
-  };
+export default function AllChatRoomPreview({
+  chatRoomId,
+  masterId,
+  participantCount,
+  participantState,
+  title,
+}) {
   return (
-    <div className="chatContainer" onClick={onclick}>
-      <div className="chatNum">3</div>
-      <div className="chatTitle">들어오세요~</div>
-      <button className="enterBtn">참여</button>
-    </div>
+    <Link
+      to={{
+        pathname: `/chatRoom/${chatRoomId}`,
+        state: {
+          masterId,
+          participantCount,
+          participantState,
+          title,
+        },
+      }}
+      className="chatContainer"
+    >
+      <div className="chatNum">{participantCount}</div>
+      <div className="chatTitle">{title}</div>
+      {!participantState && <button className="enterBtn">참여</button>}
+    </Link>
   );
 }
