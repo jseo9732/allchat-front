@@ -21,7 +21,7 @@ export default function AppRouter({ userId, myToken }) {
               <Route path="/addChatRoom">
                 <AddChatRoom userId={userId} myToken={myToken} />
               </Route>
-              <Route path="/chatRoom" component={ChatRoom} />
+              <Route path="/chatRoom/:chatRoomId" component={ChatRoom} />
             </div>
           </>
         ) : (

@@ -3,12 +3,18 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import "./ChatRoom.css";
 
-export default function ChatRoom() {
+export default function ChatRoom(props) {
   const history = useHistory();
   const onBackClick = () => {
     history.push("/");
   };
 
+  const { location } = props;
+  const { masterId, participantCount, participantState, title } =
+    location.state;
+  if (location.state === undefined) {
+    history.push("/");
+  }
   // const eventSource = new EventSource(
   //   `http://localhost:9300/chat/roomNum/${roomNum}`
   // );
@@ -130,8 +136,8 @@ export default function ChatRoom() {
           />
         </div>
         <div className="chatRoomTitleContainer">
-          <span className="chatRoomTitle">들어오세요~</span>
-          <span className="chatRoomNum">(3)</span>
+          <span className="chatRoomTitle">{title}</span>
+          <span className="chatRoomNum">({participantCount})</span>
         </div>
         <div className="chatRoomImgContainer">
           <img
@@ -149,7 +155,7 @@ export default function ChatRoom() {
 
         <div className="chatContents">
           <div id="chat-box">
-            <div className="sent_box">
+            {/* <div className="sent_box">
               <div className="sent_msg">
                 <p>내가 보낸 첫 문자</p>
                 <span className="date_time">11:05 | 10:51</span>
@@ -232,7 +238,7 @@ export default function ChatRoom() {
             </div>
             <div className="NotiBox">
               <p>정수님이 퇴장하였습니다.</p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="chatInputContainer">
