@@ -21,6 +21,7 @@
   background-color: #00cc45;
   border-radius: 40%;
   margin-right: 20px;
+  color: white;
 }
 
 .chatTitle {
@@ -31,4 +32,6 @@
 .enterBtn {
   width: 50px;
   height: 30px;
+  border: 0;
+  border-radius: 5px;
 }
