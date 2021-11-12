@@ -9,7 +9,7 @@ import {
   ChatRoom,
 } from "../pages/PagesIndex";
 
-export default function AppRouter({ myToken }) {
+export default function AppRouter({ userId, myToken }) {
   return (
     <>
       <BrowserRouter>
@@ -19,7 +19,7 @@ export default function AppRouter({ myToken }) {
               <ChatList />
               <Route exact path="/" component={Home} />
               <Route path="/addChatRoom">
-                <AddChatRoom myToken={myToken} />
+                <AddChatRoom userId={userId} myToken={myToken} />
               </Route>
               <Route path="/chatRoom" component={ChatRoom} />
             </div>
