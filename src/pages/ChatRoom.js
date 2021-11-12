@@ -1,6 +1,8 @@
 // import { useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import ChatSideMenu from "../components/ChatSideMenu";
 import "./ChatRoom.css";
 
 export default function ChatRoom(props) {
@@ -10,11 +12,19 @@ export default function ChatRoom(props) {
   };
 
   const { location } = props;
-  const { masterId, participantCount, participantState, title } =
-    location.state;
+  const {
+    chatRoomId,
+    masterId,
+    participantCount,
+    participantState,
+    title,
+    myToken,
+  } = location.state;
   if (location.state === undefined) {
+    alert("채팅방이 삭제되었습니다.");
     history.push("/");
   }
+
   // const eventSource = new EventSource(
   //   `http://localhost:9300/chat/roomNum/${roomNum}`
   // );
@@ -123,7 +133,31 @@ export default function ChatRoom(props) {
   const [showSideMenu, setShowSideMenu] = useState(false);
   const onSideMenuClick = () => {
     setShowSideMenu(!showSideMenu);
+    getEnterUser();
   };
+
+  const [enterUSers, setEnterUsers] = useState([]);
+  const getEnterUser = () => {
+    if (!showSideMenu) {
+      axios(
+        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: myToken,
+          },
+        }
+      )
+        .then((res) => {
+          setEnterUsers(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   return (
     <div className="chatRoomContainer">
       <div className="chatRoomTopBar">
@@ -254,43 +288,7 @@ export default function ChatRoom(props) {
             </button>
           </form>
         </div>
-
-        <div
-          className={
-            showSideMenu ? "sideMenuContainer active" : "sideMenuContainer"
-          }
-        >
-          <div className="sideMenu">
-            <div className="chatMemberContainer">
-              <div className="chatMemberTitle">대화 상대</div>
-              <div className="chatMemberBox">
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-                <div className="chatMember">형우</div>
-                <div className="chatMember">지수</div>
-              </div>
-            </div>
-            <div className="btnBox">
-              <button>나가기</button>
-            </div>
-          </div>
-        </div>
+        <ChatSideMenu showSideMenu={showSideMenu} enterUSers={enterUSers} />
       </div>
     </div>
   );

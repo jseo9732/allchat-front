@@ -7,16 +7,19 @@ export default function EnterChatRoomPreview({
   participantCount,
   participantState,
   title,
+  myToken,
 }) {
   return (
     <Link
       to={{
         pathname: `/chatRoom/${chatRoomId}`,
         state: {
+          chatRoomId,
           masterId,
           participantCount,
           participantState,
           title,
+          myToken,
         },
       }}
       className="chatContainer"

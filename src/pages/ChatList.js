@@ -118,6 +118,7 @@ export default function ChatList({ myToken }) {
                   participantCount={chatRoom.participantCount}
                   participantState={chatRoom.participantState}
                   title={chatRoom.title}
+                  myToken={myToken}
                 />
               );
             })}
@@ -132,6 +133,7 @@ export default function ChatList({ myToken }) {
                   participantCount={chatRoom.participantCount}
                   participantState={chatRoom.participantState}
                   title={chatRoom.title}
+                  myToken={myToken}
                 />
               );
             })}
