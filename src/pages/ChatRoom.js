@@ -4,23 +4,18 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import ChatSideMenu from "../components/ChatSideMenu";
 import "./ChatRoom.css";
+import Cookies from "universal-cookie";
 
 export default function ChatRoom(props) {
+  const cookies = new Cookies();
   const history = useHistory();
   const onBackClick = () => {
     history.push("/");
   };
 
   const { location } = props;
-  const {
-    chatRoomId,
-    masterId,
-    userId,
-    participantCount,
-    participantState,
-    title,
-    myToken,
-  } = location.state;
+  const { chatRoomId, masterId, userId, participantCount, title, myToken } =
+    location.state;
   if (location.state === undefined) {
     alert("채팅방이 삭제되었습니다.");
     history.push("/");
@@ -153,7 +148,14 @@ export default function ChatRoom(props) {
           setEnterUsers(res.data.data);
         })
         .catch((err) => {
-          console.log(err);
+          if (err.response.data.error === "Unauthorized") {
+            alert("로그인 후 다시 이용해주세요");
+            cookies.remove("myToken");
+            cookies.remove("userId");
+            document.location.href = "/";
+          } else {
+            console.log(err.response);
+          }
         });
     }
   };

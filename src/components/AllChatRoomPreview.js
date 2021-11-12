@@ -1,6 +1,7 @@
 import "./ChatRoomPreview.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function AllChatRoomPreview({
   chatRoomId,
@@ -11,6 +12,7 @@ export default function AllChatRoomPreview({
   userId,
   myToken,
 }) {
+  const cookies = new Cookies();
   const onChatRoomClick = () => {
     if (!participantState) {
       joinChat();
@@ -31,7 +33,14 @@ export default function AllChatRoomPreview({
         },
       }
     ).catch((err) => {
-      console.log(err);
+      if (err.response.data.error === "Unauthorized") {
+        alert("로그인 후 다시 이용해주세요");
+        cookies.remove("myToken");
+        cookies.remove("userId");
+        document.location.href = "/";
+      } else {
+        console.log(err.response);
+      }
     });
   };
 

@@ -12,7 +12,6 @@ export default function AddChatRoom({ userId, myToken }) {
 
   const onaddRoomSubmit = async (e) => {
     e.preventDefault();
-    console.log(myToken);
     axios(
       "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms",
       {
@@ -34,6 +33,7 @@ export default function AddChatRoom({ userId, myToken }) {
         if (err.response.data.error === "Unauthorized") {
           alert("로그인 후 다시 이용해주세요");
           cookies.remove("myToken");
+          cookies.remove("userId");
           document.location.href = "/";
         } else {
           console.log(err.response);

@@ -7,6 +7,7 @@ export default function Home() {
   const onLogoutClick = () => {
     cookies.remove("myToken");
     cookies.remove("userId");
+    alert("로그아웃 되었습니다.");
     document.location.href = "/";
   };
   return (

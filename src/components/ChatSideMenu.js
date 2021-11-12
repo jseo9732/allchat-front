@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useHistory } from "react-router";
+import Cookies from "universal-cookie";
 
 export default function ChatSideMenu({
   showSideMenu,
@@ -9,6 +10,7 @@ export default function ChatSideMenu({
   myToken,
   isMaster,
 }) {
+  const cookies = new Cookies();
   const history = useHistory();
 
   const onChatRoomDel = () => {
@@ -26,7 +28,14 @@ export default function ChatSideMenu({
         history.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data.error === "Unauthorized") {
+          alert("로그인 후 다시 이용해주세요");
+          cookies.remove("myToken");
+          cookies.remove("userId");
+          document.location.href = "/";
+        } else {
+          console.log(err.response);
+        }
       });
   };
   const onChatRoomOut = () => {

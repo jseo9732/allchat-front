@@ -4,8 +4,10 @@ import EnterChatRoomPreview from "../components/EnterChatRoomPreview";
 import AllChatRoomPreview from "../components/AllChatRoomPreview";
 import "./ChatList.css";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 export default function ChatList({ userId, myToken }) {
+  const cookies = new Cookies();
   const [addImgSrc, setaddImgSrc] = useState("/image/chat_white.png");
   const onMouseOver = () => {
     setaddImgSrc("/image/chat_black.png");
@@ -63,7 +65,14 @@ export default function ChatList({ userId, myToken }) {
         setAllChatRoomsData(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data.error === "Unauthorized") {
+          alert("로그인 후 다시 이용해주세요");
+          cookies.remove("myToken");
+          cookies.remove("userId");
+          document.location.href = "/";
+        } else {
+          console.log(err.response);
+        }
       });
   };
 
@@ -83,12 +92,20 @@ export default function ChatList({ userId, myToken }) {
         setEnterChatRoomsData(res.data.data);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data.error === "Unauthorized") {
+          alert("로그인 후 다시 이용해주세요");
+          cookies.remove("myToken");
+          cookies.remove("userId");
+          document.location.href = "/";
+        } else {
+          console.log(err.response);
+        }
       });
   };
 
   useEffect(() => {
     getAllChatRoomsList();
+    getEnterChatRoomsList();
   });
 
   return (
