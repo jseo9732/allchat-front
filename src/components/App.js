@@ -17,7 +17,6 @@ export default function App() {
 
   useEffect(() => {
     getCookie();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
   return <AppRouter userId={userId} myToken={myToken} />;
 }

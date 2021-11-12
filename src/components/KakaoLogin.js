@@ -39,8 +39,7 @@ export default function KakaoLogin() {
     if (code) {
       getKakaoToken();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return (
     <a className="kakaoLoginBtn" href={kakaoApi}>
