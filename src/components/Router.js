@@ -6,7 +6,7 @@ import {
   KakaoLogin,
   Signup,
   AddChatRoom,
-  // ChatRoom,
+  ChatRoom,
 } from "../pages/PagesIndex";
 
 export default function AppRouter({ isLoggedin, userObj, refreshLogin }) {
@@ -22,7 +22,7 @@ export default function AppRouter({ isLoggedin, userObj, refreshLogin }) {
               <Route path="/addChatRoom">
                 <AddChatRoom userObj={userObj} />
               </Route>
-              {/*<Route path="/chatRoom/:chatRoomId" component={ChatRoom} /> */}
+              <Route path="/chatRoom/:chatRoomId" component={ChatRoom} />
             </div>
           </>
         ) : (

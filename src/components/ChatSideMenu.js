@@ -1,17 +1,45 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 
 export default function ChatSideMenu({
   showSideMenu,
-  enterUSers,
-  userId,
   chatRoomId,
-  myToken,
+  userId,
+  jwtToken,
   isMaster,
 }) {
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
   const history = useHistory();
+
+  const [enterUSers, setEnterUsers] = useState([]);
+  const getEnterUser = (showSideMenu) => {
+    if (showSideMenu) {
+      axios(
+        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: jwtToken,
+          },
+        }
+      )
+        .then((res) => {
+          setEnterUsers(res.data.data);
+        })
+        .catch((err) => {
+          if (err.response.data.error === "Unauthorized") {
+            alert("로그인 후 다시 이용해주세요");
+            // cookies.remove("jwtToken");
+            // cookies.remove("userId");
+          } else {
+            console.log(err.response);
+          }
+        });
+    }
+  };
 
   const onChatRoomDel = () => {
     axios(
@@ -20,7 +48,7 @@ export default function ChatSideMenu({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: myToken,
+          Authorization: jwtToken,
         },
       }
     )
@@ -30,9 +58,9 @@ export default function ChatSideMenu({
       .catch((err) => {
         if (err.response.data.error === "Unauthorized") {
           alert("로그인 후 다시 이용해주세요");
-          cookies.remove("myToken");
-          cookies.remove("userId");
-          document.location.href = "/";
+          // cookies.remove("jwtToken");
+          // cookies.remove("userId");
+          // document.location.href = "/";
         } else {
           console.log(err.response);
         }
@@ -45,7 +73,7 @@ export default function ChatSideMenu({
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: myToken,
+          Authorization: jwtToken,
         },
         data: {
           userId: userId,
@@ -60,6 +88,12 @@ export default function ChatSideMenu({
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    getEnterUser(showSideMenu);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSideMenu]);
+
   return (
     <div
       className={
@@ -70,13 +104,14 @@ export default function ChatSideMenu({
         <div className="chatMemberContainer">
           <div className="chatMemberTitle">대화 상대</div>
           <div className="chatMemberBox">
-            {enterUSers.map((enterUSer) => {
-              return (
-                <div key={enterUSer.joinId} className="chatMember">
-                  {enterUSer.username}
-                </div>
-              );
-            })}
+            {showSideMenu &&
+              enterUSers.map((enterUSer) => {
+                return (
+                  <div key={enterUSer.joinId} className="chatMember">
+                    {enterUSer.username}
+                  </div>
+                );
+              })}
           </div>
         </div>
         <div className="btnBox">
