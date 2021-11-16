@@ -1,13 +1,14 @@
 import { useHistory } from "react-router";
 import "./AddChatRoom.css";
 import axios from "axios";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 
-export default function AddChatRoom({ userId, myToken }) {
+export default function AddChatRoom({ userObj: { userId, jwtToken } }) {
   const history = useHistory();
-  const cookies = new Cookies();
+  // const cookies = new Cookies();
   const onBackClick = () => {
     history.push("/");
+    // 채팅 목록 새로고침 하기
   };
 
   const onaddRoomSubmit = async (e) => {
@@ -16,10 +17,10 @@ export default function AddChatRoom({ userId, myToken }) {
       "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: myToken,
-        },
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   Authorization: jwtToken,
+        // },
         data: {
           masterId: userId,
           title: e.target.chatRoomTitle.value,
@@ -28,13 +29,14 @@ export default function AddChatRoom({ userId, myToken }) {
     )
       .then((res) => {
         history.push("/");
+        // 채팅 목록 새로고침 하기
       })
       .catch((err) => {
         if (err.response.data.error === "Unauthorized") {
           alert("로그인 후 다시 이용해주세요");
-          cookies.remove("myToken");
-          cookies.remove("userId");
-          document.location.href = "/";
+          // cookies.remove("jwtToken");
+          // cookies.remove("userId");
+          // document.location.href = "/";
         } else {
           console.log(err.response);
         }
@@ -60,6 +62,7 @@ export default function AddChatRoom({ userId, myToken }) {
           className="AddChatRoomInput"
           type="text"
           placeholder="방 이름을 입력하세요."
+          required
         />
         <input className="AddChatRoomBtn" type="submit" value="만들기" />
       </form>

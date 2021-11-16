@@ -6,13 +6,11 @@ import {
   KakaoLogin,
   Signup,
   ChatList,
-  // AddChatRoom,
+  AddChatRoom,
   // ChatRoom,
 } from "../pages/PagesIndex";
 
-export default function AppRouter(
-  { isLoggedin, userObj, refreshLogin } /*{ userId, myToken }*/
-) {
+export default function AppRouter({ isLoggedin, userObj, refreshLogin }) {
   return (
     <>
       <BrowserRouter>
@@ -23,10 +21,10 @@ export default function AppRouter(
               <Route exact path="/">
                 <Home refreshLogin={refreshLogin} />
               </Route>
-              {/*<Route path="/addChatRoom">
-                <AddChatRoom userId={userId} myToken={myToken} />
+              <Route path="/addChatRoom">
+                <AddChatRoom userObj={userObj} />
               </Route>
-              <Route path="/chatRoom/:chatRoomId" component={ChatRoom} /> */}
+              {/*<Route path="/chatRoom/:chatRoomId" component={ChatRoom} /> */}
             </div>
           </>
         ) : (
