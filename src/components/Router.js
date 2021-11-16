@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import {
-  // Home,
+  Home,
   Login,
   KakaoLogin,
   Signup,
@@ -20,12 +20,13 @@ export default function AppRouter(
           <>
             <div className="firstContainer">
               <ChatList userObj={userObj} />
-              {/*<Route exact path="/" component={Home} />
-              <Route path="/addChatRoom">
+              <Route exact path="/">
+                <Home refreshLogin={refreshLogin} />
+              </Route>
+              {/*<Route path="/addChatRoom">
                 <AddChatRoom userId={userId} myToken={myToken} />
               </Route>
               <Route path="/chatRoom/:chatRoomId" component={ChatRoom} /> */}
-              로그인 됨
             </div>
           </>
         ) : (
