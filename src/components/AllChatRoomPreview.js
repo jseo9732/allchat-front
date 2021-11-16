@@ -1,8 +1,7 @@
 import "./ChatRoomPreview.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import Cookies from "universal-cookie";
-import { useState } from "react";
+import { useHistory } from "react-router";
+// import Cookies from "universal-cookie";
 
 export default function AllChatRoomPreview({
   chatRoomId,
@@ -11,16 +10,11 @@ export default function AllChatRoomPreview({
   participantState,
   title,
   userId,
-  myToken,
+  jwtToken,
 }) {
-  const cookies = new Cookies();
-  const onChatRoomClick = () => {
-    if (!participantState) {
-      joinChat();
-    } else {
-      getChatMsg();
-    }
-  };
+  // const cookies = new Cookies();
+  const history = useHistory();
+
   const joinChat = async () => {
     if (participantState === false) {
       await axios(
@@ -29,7 +23,7 @@ export default function AllChatRoomPreview({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: myToken,
+            Authorization: jwtToken,
           },
           data: {
             userId: userId,
@@ -37,29 +31,15 @@ export default function AllChatRoomPreview({
           },
         }
       )
-        // .then((res) => {
-        //   axios(
-        //     `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/notifications`,
-        //     {
-        //       method: "POST",
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //         Authorization: myToken,
-        //       },
-        //       data: {
-        //         participant: "지수씨",
-        //         roomId: chatRoomId,
-        //         join: true,
-        //       },
-        //     }
-        //   );
-        // })
+        .then((res) => {
+          history.push("/");
+        })
         .catch((err) => {
           if (err.response.data.error === "Unauthorized") {
             alert("로그인 후 다시 이용해주세요");
-            cookies.remove("myToken");
-            cookies.remove("userId");
-            document.location.href = "/";
+            // cookies.remove("jwtToken");
+            // cookies.remove("userId");
+            // document.location.href = "/";
           } else {
             console.log(err.response);
           }
@@ -67,43 +47,31 @@ export default function AllChatRoomPreview({
     }
   };
 
-  const [chatData, setChatData] = useState([]);
-  const getChatMsg = async () => {
-    await axios(
-      `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: myToken,
-        },
-      }
-    ).then((res) => {
-      setChatData(res.data.data);
-    });
-  };
+  // const [chatData, setChatData] = useState([]);
+  // const getChatMsg = async () => {
+  //   await axios(
+  //     `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: jwtToken,
+  //       },
+  //     }
+  //   ).then((res) => {
+  //     setChatData(res.data.data);
+  //   });
+  // };
 
   return (
-    <Link
-      to={{
-        pathname: `/chatRoom/${chatRoomId}`,
-        state: {
-          chatRoomId,
-          masterId,
-          userId,
-          participantCount,
-          participantState,
-          title,
-          myToken,
-          chatData,
-        },
-      }}
-      className="chatContainer"
-      onClick={onChatRoomClick}
-    >
+    <div className="chatContainer">
       <div className="chatNum">{participantCount}</div>
       <div className="chatTitle">{title}</div>
-      {!participantState && <button className="enterBtn">참여</button>}
-    </Link>
+      {!participantState && (
+        <button className="enterBtn" onClick={joinChat}>
+          참여
+        </button>
+      )}
+    </div>
   );
 }
