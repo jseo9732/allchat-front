@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import KakaoLogin from "../components/KakaoLogin";
 
 export default function Login() {
   const [userId, setUserId] = useState("");
@@ -66,6 +65,8 @@ export default function Login() {
     }
   };
 
+  const kakaoApi = `https://kauth.kakao.com/oauth/authorize?client_id=3e716bc2780a7b5fe1da319c4487c6f9&redirect_uri=http://localhost:3000/kakaologin&response_type=code`;
+
   return (
     <div className="loginContainer">
       <h1 className="title">AllChat</h1>
@@ -104,7 +105,9 @@ export default function Login() {
         <button className="loginBtn" type="submit" onClick={onLoginClick}>
           로그인
         </button>
-        <KakaoLogin />
+        <a className="kakaoLoginBtn" href={kakaoApi}>
+          <img alt="카카오 로그인" src="/image/kakao_login_medium_wide.png" />
+        </a>
       </form>
       <Link to="/signup" className="toSignupBtn">
         회원가입

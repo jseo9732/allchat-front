@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import EnterChatRoomPreview from "../components/EnterChatRoomPreview";
-import AllChatRoomPreview from "../components/AllChatRoomPreview";
+import EnterChatRoomPreview from "../../components/EnterChatRoomPreview";
+import AllChatRoomPreview from "../../components/AllChatRoomPreview";
 import "./ChatList.css";
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -50,8 +50,8 @@ export default function ChatList({ userId, myToken }) {
   };
 
   const [AllchatRoomsData, setAllChatRoomsData] = useState([]);
-  const getAllChatRoomsList = () => {
-    axios(
+  const getAllChatRoomsList = async () => {
+    await axios(
       `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms`,
       {
         method: "GET",
@@ -77,8 +77,8 @@ export default function ChatList({ userId, myToken }) {
   };
 
   const [EnterchatRoomsData, setEnterChatRoomsData] = useState([]);
-  const getEnterChatRoomsList = () => {
-    axios(
+  const getEnterChatRoomsList = async () => {
+    await axios(
       `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/participating`,
       {
         method: "GET",
@@ -106,7 +106,8 @@ export default function ChatList({ userId, myToken }) {
   useEffect(() => {
     getAllChatRoomsList();
     getEnterChatRoomsList();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
