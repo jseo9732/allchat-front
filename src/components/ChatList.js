@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import AddChatRoomBtn from "./AddChatRoomBtn";
 import ToggleBtn from "./ToggleBtn";
@@ -11,12 +11,6 @@ import "./ChatList.css";
 
 export default function ChatList({ userObj: { userId, jwtToken } }) {
   // const cookies = new Cookies();
-  const history = useHistory();
-
-  // 홈 버튼 클릭 시
-  const onHomeClick = () => {
-    history.push("/");
-  };
 
   // 채팅 목록 가져오기
   const [AllchatRoomsData, setAllChatRoomsData] = useState([]);
@@ -83,9 +77,9 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
     <>
       <div className="chatListContainer">
         <div className="TitleContainer">
-          <h2 className="chatListTitle" onClick={onHomeClick}>
+          <Link to="/" className="chatListTitle">
             채팅
-          </h2>
+          </Link>
           <AddChatRoomBtn />
         </div>
         <div id="slider" className="rowChatListContainer">
