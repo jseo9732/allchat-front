@@ -11,12 +11,12 @@ import {
 } from "../pages/PagesIndex";
 
 export default function AppRouter(
-  { isLogin, refreshLogin } /*{ userId, myToken }*/
+  { isLoggedin, userObj, refreshLogin } /*{ userId, myToken }*/
 ) {
   return (
     <>
       <BrowserRouter>
-        {isLogin ? (
+        {isLoggedin ? (
           <>
             <div className="firstContainer">
               {/* <ChatList userId={userId} myToken={myToken} />
@@ -31,7 +31,9 @@ export default function AppRouter(
         ) : (
           <>
             <Route exact path="/" component={Login} />
-            <Route path="/kakaologin" component={KakaoLogin} />
+            <Route path="/kakaologin">
+              <KakaoLogin refreshLogin={refreshLogin} />
+            </Route>
             <Route path="/signup" component={Signup} />
           </>
         )}
