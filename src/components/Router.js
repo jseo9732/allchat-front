@@ -30,7 +30,9 @@ export default function AppRouter(
           </>
         ) : (
           <>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/">
+              <Login refreshLogin={refreshLogin} />
+            </Route>
             <Route path="/kakaologin">
               <KakaoLogin refreshLogin={refreshLogin} />
             </Route>
