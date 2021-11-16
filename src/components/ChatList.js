@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import AddChatRoomBtn from "../../components/AddChatRoomBtn";
-import ToggleBtn from "../../components/ToggleBtn";
-import AllChatRoomPreview from "../../components/AllChatRoomPreview";
-import EnterChatRoomPreview from "../../components/EnterChatRoomPreview";
+import AddChatRoomBtn from "./AddChatRoomBtn";
+import ToggleBtn from "./ToggleBtn";
+import AllChatRoomPreview from "./AllChatRoomPreview";
+import EnterChatRoomPreview from "./EnterChatRoomPreview";
 import "./ChatList.css";
 
 // import Cookies from "universal-cookie";
@@ -33,7 +33,6 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
     )
       .then((res) => {
         setAllChatRoomsData(res.data.data);
-        console.log("전체 채팅: ", res.data.data);
       })
       .catch((err) => {
         if (err.response.data.error === "Unauthorized") {
@@ -61,7 +60,6 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
     )
       .then((res) => {
         setEnterChatRoomsData(res.data.data);
-        console.log("참여 채팅: ", res.data.data);
       })
       .catch((err) => {
         if (err.response.data.error === "Unauthorized") {

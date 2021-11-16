@@ -5,7 +5,6 @@ import {
   Login,
   KakaoLogin,
   Signup,
-  ChatList,
   AddChatRoom,
   // ChatRoom,
 } from "../pages/PagesIndex";
@@ -17,9 +16,8 @@ export default function AppRouter({ isLoggedin, userObj, refreshLogin }) {
         {isLoggedin ? (
           <>
             <div className="firstContainer">
-              <ChatList userObj={userObj} />
               <Route exact path="/">
-                <Home refreshLogin={refreshLogin} />
+                <Home refreshLogin={refreshLogin} userObj={userObj} />
               </Route>
               <Route path="/addChatRoom">
                 <AddChatRoom userObj={userObj} />
