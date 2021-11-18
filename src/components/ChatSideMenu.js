@@ -16,34 +16,6 @@ export default function ChatSideMenu({
   // const cookies = new Cookies();
   const history = useHistory();
 
-  const [enterUSers, setEnterUsers] = useState([]);
-  const getEnterUser = (showSideMenu) => {
-    if (showSideMenu) {
-      axios(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: jwtToken,
-          },
-        }
-      )
-        .then((res) => {
-          setEnterUsers(res.data.data);
-        })
-        .catch((err) => {
-          if (err.response.data.error === "Unauthorized") {
-            alert("로그인 후 다시 이용해주세요");
-            // cookies.remove("jwtToken");
-            // cookies.remove("userId");
-          } else {
-            console.log(err.response);
-          }
-        });
-    }
-  };
-
   // 채팅방 삭제
   const onChatRoomDel = async () => {
     if (window.confirm("채팅방을 삭제하시겠습니까?") === true) {
@@ -70,16 +42,14 @@ export default function ChatSideMenu({
         });
     }
   };
+
+  // 채팅방 나가기
   const onChatRoomOut = async () => {
     if (window.confirm("채팅방을 나가시겠습니까?") === true) {
       await axios(
         `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/joins`,
         {
           method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: jwtToken,
-          },
           data: {
             userId: userId,
             chatRoomId: chatRoomId,
@@ -128,7 +98,26 @@ export default function ChatSideMenu({
 
   const [enterUSers, setEnterUsers] = useState([]);
   useEffect(() => {
-    getEnterUser(showSideMenu);
+    if (showSideMenu) {
+      axios(
+        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins`,
+        {
+          method: "GET",
+        }
+      )
+        .then((res) => {
+          setEnterUsers(res.data.data);
+        })
+        .catch((err) => {
+          if (err.response.data.error === "Unauthorized") {
+            alert("로그인 후 다시 이용해주세요");
+            // cookies.remove("jwtToken");
+            // cookies.remove("userId");
+          } else {
+            console.log(err.response);
+          }
+        });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSideMenu, chatRoomId]);
 
