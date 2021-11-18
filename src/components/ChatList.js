@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import AddChatRoomBtn from "./AddChatRoomBtn";
 import ToggleBtn from "./ToggleBtn";
-import AllChatRoomPreview from "./AllChatRoomPreview";
-import EnterChatRoomPreview from "./EnterChatRoomPreview";
+import ChatRoomPreview from "./ChatRoomPreview";
 import "./ChatList.css";
 
 // import Cookies from "universal-cookie";
@@ -86,7 +85,7 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
           <div className="allchatList">
             {AllchatRoomsData.map((chatRoom) => {
               return (
-                <AllChatRoomPreview
+                <ChatRoomPreview
                   key={chatRoom.chatRoomId}
                   chatRoomId={chatRoom.chatRoomId}
                   masterId={chatRoom.masterId}
@@ -102,7 +101,7 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
           <div className="enterchatList">
             {EnterchatRoomsData.map((chatRoom) => {
               return (
-                <EnterChatRoomPreview
+                <ChatRoomPreview
                   key={chatRoom.chatRoomId}
                   chatRoomId={chatRoom.chatRoomId}
                   masterId={chatRoom.masterId}

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 // import Cookies from "universal-cookie";
 
-export default function AllChatRoomPreview({
+export default function ChatRoomPreview({
   chatRoomId,
   masterId,
   participantCount,
