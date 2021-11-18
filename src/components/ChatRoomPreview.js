@@ -68,8 +68,15 @@ export default function ChatRoomPreview({
           join: true,
         },
       }
-    ).then((res) => {
-      console.log(res.data);
+    ).catch((err) => {
+      if (err.response.data.error === "Unauthorized") {
+        alert("로그인 후 다시 이용해주세요");
+        // cookies.remove("jwtToken");
+        // cookies.remove("userId");
+        // document.location.href = "/";
+      } else {
+        console.log(err.response);
+      }
     });
   };
 
