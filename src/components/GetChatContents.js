@@ -3,15 +3,14 @@ import { EventSourcePolyfill } from "event-source-polyfill";
 export default function GetChatContents({
   chatRoomId,
   userId,
-  chatData,
-  myToken,
+  jwtToken,
+  joinData: { username, joinDateTime },
 }) {
-  const { username, joinDateTime } = chatData;
   const eventSource = new EventSourcePolyfill(
     `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chatRooms/${chatRoomId}/chats?username=${username}&joinDateTime=${joinDateTime}`,
     {
       headers: {
-        Authorization: myToken,
+        Authorization: jwtToken,
       },
     }
   );
