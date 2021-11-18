@@ -68,8 +68,9 @@ export default function Login({ refreshLogin }) {
         // });
       })
       .catch((err) => {
+        console.log(err);
         setInputNull(false);
-        setLoginFail(!err.response.data.data);
+        setLoginFail(true);
       });
   };
 
