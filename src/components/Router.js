@@ -36,7 +36,11 @@ export default function AppRouter({
                 <Home refreshLogin={refreshLogin} userObj={userObj} />
               </Route>
               <Route path="/addChatRoom">
-                <AddChatRoom userObj={userObj} />
+                <AddChatRoom
+                  userObj={userObj}
+                  refreshAllList={refreshAllList}
+                  refreshEnterList={refreshEnterList}
+                />
               </Route>
               <Route path="/chatRoom/:chatRoomId" component={ChatRoom} />
             </div>

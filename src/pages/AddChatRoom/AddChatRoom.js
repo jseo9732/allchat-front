@@ -4,11 +4,17 @@ import axios from "axios";
 
 // import Cookies from "universal-cookie";
 
-export default function AddChatRoom({ userObj }) {
+export default function AddChatRoom({
+  userObj,
+  refreshAllList,
+  refreshEnterList,
+}) {
   const history = useHistory();
   // const cookies = new Cookies();
   const onBackClick = () => {
-    history.push("/");
+    refreshAllList();
+    refreshEnterList();
+    history.goBack();
   };
 
   const onaddRoomSubmit = async (e) => {
@@ -28,6 +34,8 @@ export default function AddChatRoom({ userObj }) {
       }
     )
       .then((res) => {
+        refreshAllList();
+        refreshEnterList();
         history.push("/");
       })
       .catch((err) => {
