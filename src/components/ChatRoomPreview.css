@@ -35,3 +35,9 @@
   border: 0;
   border-radius: 5px;
 }
+
+.enterBtn:hover {
+  cursor: pointer;
+  background-color: #00cc45;
+  color: white;
+}
