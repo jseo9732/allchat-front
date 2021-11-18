@@ -56,6 +56,7 @@ export default function ChatRoom({
       .then((res) => {
         setJoinData(res.data.data);
       });
+    setShowSideMenu(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatRoomId]);
 
@@ -110,10 +111,12 @@ export default function ChatRoom({
           </div>
           <ChatSideMenu
             showSideMenu={showSideMenu}
-            // chatRoomId={chatRoomId}
+            chatRoomId={chatRoomId}
             userId={userId}
             jwtToken={jwtToken}
             isMaster={masterId === Number(userId)}
+            refreshAllList={refreshAllList}
+            refreshEnterList={refreshEnterList}
           />
         </div>
       </div>
