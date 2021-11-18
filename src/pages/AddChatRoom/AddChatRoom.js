@@ -1,7 +1,6 @@
 import { useHistory } from "react-router";
 import "./AddChatRoom.css";
 import axios from "axios";
-import ChatList from "../../components/ChatList";
 
 // import Cookies from "universal-cookie";
 
@@ -45,7 +44,6 @@ export default function AddChatRoom({ userObj }) {
 
   return (
     <>
-      <ChatList userObj={userObj} />
       <div className="AddChatRoomContainer">
         <div className="AddChatRoomTopBar">
           <div className="AddChatRoomImgContainer">

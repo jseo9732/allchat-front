@@ -1,4 +1,3 @@
-import ChatList from "../../components/ChatList";
 import "./Home.css";
 // import Cookies from "universal-cookie";
 
@@ -13,7 +12,6 @@ export default function Home({ refreshLogin, userObj }) {
   };
   return (
     <>
-      <ChatList userObj={userObj} />
       <div className="homeContainer">
         <button className="LogoutBtn" onClick={onLogoutClick}>
           로그아웃

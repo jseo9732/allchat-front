@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import {
-  Home,
+  Signup,
   Login,
   KakaoLogin,
-  Signup,
+  ChatList,
+  Home,
   AddChatRoom,
   ChatRoom,
 } from "../pages/PagesIndex";
@@ -16,6 +17,7 @@ export default function AppRouter({ isLoggedin, userObj, refreshLogin }) {
         {isLoggedin ? (
           <>
             <div className="firstContainer">
+              <ChatList userObj={userObj} />
               <Route exact path="/">
                 <Home refreshLogin={refreshLogin} userObj={userObj} />
               </Route>

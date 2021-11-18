@@ -6,7 +6,6 @@ import ChatSideMenu from "../../components/ChatSideMenu";
 import "./ChatRoom.css";
 // import Cookies from "universal-cookie";
 // import GetChatContents from "../../components/GetChatContents";
-import ChatList from "../../components/ChatList";
 
 export default function ChatRoom(props) {
   const {
@@ -18,7 +17,6 @@ export default function ChatRoom(props) {
     jwtToken,
     // chatData,
   } = props.location.state;
-  const userObj = { userId, jwtToken };
 
   // const cookies = new Cookies();
   const history = useHistory();
@@ -60,7 +58,6 @@ export default function ChatRoom(props) {
 
   return (
     <>
-      <ChatList userObj={userObj} />
       <div className="chatRoomContainer">
         <div className="chatRoomTopBar">
           <div className="chatRoomImgContainer">
