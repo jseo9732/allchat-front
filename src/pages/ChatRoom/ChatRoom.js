@@ -1,60 +1,63 @@
-// import { useEffect } from "react";
-// import axios from "axios";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import GetChatContents from "../../components/GetChatContents";
 import ChatSideMenu from "../../components/ChatSideMenu";
 import "./ChatRoom.css";
-// import Cookies from "universal-cookie";
-// import GetChatContents from "../../components/GetChatContents";
 
-export default function ChatRoom(props) {
-  const {
-    chatRoomId,
-    masterId,
-    participantCount,
-    title,
-    userId,
-    jwtToken,
-    // chatData,
-  } = props.location.state;
-
-  // const cookies = new Cookies();
+export default function ChatRoom({
+  location: { state, refreshAllList, refreshEnterList },
+}) {
+  const { chatRoomId, masterId, participantCount, title, userId, jwtToken } =
+    state;
   const history = useHistory();
+
   const onBackClick = () => {
     history.push("/");
+    refreshAllList();
+    refreshEnterList();
   };
-
-  // if (location.state === undefined) {
-  //   alert("채팅방이 삭제되었습니다.");
-  //   history.push("/");
-  // }
 
   const [showSideMenu, setShowSideMenu] = useState(false);
   const onSideMenuClick = () => {
     setShowSideMenu(!showSideMenu);
   };
 
-  // const onSaveMsgSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log(chatData);
-  //   await axios(
-  //     `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: jwtToken,
-  //       },
-  //       data: {
-  //         msg: e.target.chatValue.value,
-  //         sender: chatData.username,
-  //         roomId: chatRoomId,
-  //       },
-  //     }
-  //   ).catch((err) => {
-  //     console.log(err);
-  //   });
-  // };
+  // 채팅 메세지 저장
+  const onSaveMsgSubmit = async (e) => {
+    e.preventDefault();
+    await axios(
+      `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats`,
+      {
+        method: "POST",
+        data: {
+          msg: e.target.chatValue.value,
+          sender: joinData.username,
+          roomId: chatRoomId,
+        },
+      }
+    )
+      .then((res) => {
+        console.log(res.data);
+        e.target.chatValue.value = "";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [joinData, setJoinData] = useState([]);
+  useEffect(() => {
+    // 채팅방 입장 시간 조회
+    axios
+      .get(
+        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+      )
+      .then((res) => {
+        setJoinData(res.data.data);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatRoomId]);
 
   return (
     <>
@@ -85,11 +88,11 @@ export default function ChatRoom(props) {
           {showSideMenu && (
             <div onClick={onSideMenuClick} className="sideMenuBlank"></div>
           )}
-          {/* <GetChatContents
+          <GetChatContents
             chatRoomId={chatRoomId}
             userId={userId}
-            chatData={chatData}
             jwtToken={jwtToken}
+            joinData={joinData}
           />
           <div className="chatInputContainer">
             <form className="chatInputForm" onSubmit={onSaveMsgSubmit}>
@@ -104,10 +107,10 @@ export default function ChatRoom(props) {
                 전송
               </button>
             </form>
-          </div> */}
+          </div>
           <ChatSideMenu
             showSideMenu={showSideMenu}
-            chatRoomId={chatRoomId}
+            // chatRoomId={chatRoomId}
             userId={userId}
             jwtToken={jwtToken}
             isMaster={masterId === Number(userId)}
