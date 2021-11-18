@@ -33,7 +33,12 @@ export default function AppRouter({
                 refreshEnterList={refreshEnterList}
               />
               <Route exact path="/">
-                <Home refreshLogin={refreshLogin} userObj={userObj} />
+                <Home
+                  userObj={userObj}
+                  refreshLogin={refreshLogin}
+                  refreshAllList={refreshAllList}
+                  refreshEnterList={refreshEnterList}
+                />
               </Route>
               <Route path="/addChatRoom">
                 <AddChatRoom

@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import "./Home.css";
 // import Cookies from "universal-cookie";
 
-export default function Home({ refreshLogin, userObj }) {
+export default function Home({
+  userObj,
+  refreshLogin,
+  refreshAllList,
+  refreshEnterList,
+}) {
   // const cookies = new Cookies();
 
   const onLogoutClick = () => {
@@ -10,6 +16,12 @@ export default function Home({ refreshLogin, userObj }) {
     // cookies.remove("userId");
     // alert("로그아웃 되었습니다.");
   };
+
+  useEffect(() => {
+    refreshAllList();
+    refreshEnterList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <div className="homeContainer">

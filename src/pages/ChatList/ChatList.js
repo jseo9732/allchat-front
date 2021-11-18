@@ -22,7 +22,14 @@ export default function ChatList({
     <>
       <div className="chatListContainer">
         <div className="TitleContainer">
-          <Link to="/" className="chatListTitle">
+          <Link
+            to="/"
+            className="chatListTitle"
+            onClick={() => {
+              refreshAllList();
+              refreshEnterList();
+            }}
+          >
             채팅
           </Link>
           <AddChatRoomBtn />
@@ -40,6 +47,8 @@ export default function ChatList({
                   title={chatRoom.title}
                   userId={userId}
                   jwtToken={jwtToken}
+                  refreshAllList={refreshAllList}
+                  refreshEnterList={refreshEnterList}
                 />
               );
             })}
@@ -56,6 +65,8 @@ export default function ChatList({
                   title={chatRoom.title}
                   userId={userId}
                   jwtToken={jwtToken}
+                  refreshAllList={refreshAllList}
+                  refreshEnterList={refreshEnterList}
                 />
               );
             })}

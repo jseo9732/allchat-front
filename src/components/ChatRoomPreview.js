@@ -1,6 +1,6 @@
+import { useHistory } from "react-router";
 import "./ChatRoomPreview.css";
 import axios from "axios";
-import { useHistory } from "react-router";
 // import Cookies from "universal-cookie";
 
 export default function ChatRoomPreview({
@@ -11,6 +11,8 @@ export default function ChatRoomPreview({
   title,
   userId,
   jwtToken,
+  refreshAllList,
+  refreshEnterList,
 }) {
   // const cookies = new Cookies();
   const history = useHistory();
@@ -32,7 +34,8 @@ export default function ChatRoomPreview({
         }
       )
         .then((res) => {
-          history.push("/");
+          refreshAllList();
+          refreshEnterList();
         })
         .catch((err) => {
           if (err.response.data.error === "Unauthorized") {
