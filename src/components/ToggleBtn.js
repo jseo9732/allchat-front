@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ToggleBtn({
-  getAllChatRoomsList,
-  getEnterChatRoomsList,
-}) {
+export default function ToggleBtn({ refreshAllList, refreshEnterList }) {
   const [btnImg, setbtnImg] = useState(false);
 
   const listener = () => {
@@ -14,7 +11,7 @@ export default function ToggleBtn({
   }, []);
 
   const onAllChatClick = () => {
-    getAllChatRoomsList();
+    refreshAllList();
     document.getElementById("slider").scrollBy({
       top: 0,
       left: -410,
@@ -22,7 +19,7 @@ export default function ToggleBtn({
     });
   };
   const onEnterChatClick = () => {
-    getEnterChatRoomsList();
+    refreshEnterList();
     document.getElementById("slider").scrollBy({
       top: 0,
       left: 410,

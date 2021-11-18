@@ -10,14 +10,28 @@ import {
   ChatRoom,
 } from "../pages/PagesIndex";
 
-export default function AppRouter({ isLoggedin, userObj, refreshLogin }) {
+export default function AppRouter({
+  isLoggedin,
+  userObj,
+  refreshLogin,
+  allList,
+  refreshAllList,
+  enterList,
+  refreshEnterList,
+}) {
   return (
     <>
       <BrowserRouter>
         {isLoggedin ? (
           <>
             <div className="firstContainer">
-              <ChatList userObj={userObj} />
+              <ChatList
+                userObj={userObj}
+                allList={allList}
+                refreshAllList={refreshAllList}
+                enterList={enterList}
+                refreshEnterList={refreshEnterList}
+              />
               <Route exact path="/">
                 <Home refreshLogin={refreshLogin} userObj={userObj} />
               </Route>

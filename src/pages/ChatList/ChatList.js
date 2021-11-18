@@ -1,74 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import AddChatRoomBtn from "./AddChatRoomBtn";
-import ToggleBtn from "./ToggleBtn";
-import ChatRoomPreview from "./ChatRoomPreview";
 import "./ChatList.css";
+import AddChatRoomBtn from "../../components/AddChatRoomBtn";
+import ChatRoomPreview from "../../components/ChatRoomPreview";
+import ToggleBtn from "../../components/ToggleBtn";
 
-// import Cookies from "universal-cookie";
-
-export default function ChatList({ userObj: { userId, jwtToken } }) {
-  // const cookies = new Cookies();
-
-  // 채팅 목록 가져오기
-  const [AllchatRoomsData, setAllChatRoomsData] = useState([]);
-  const getAllChatRoomsList = async () => {
-    await axios(
-      `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms`,
-      {
-        method: "GET",
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   Authorization: jwtToken,
-        // },
-      }
-    )
-      .then((res) => {
-        setAllChatRoomsData(res.data.data);
-      })
-      .catch((err) => {
-        if (err.response.data.error === "Unauthorized") {
-          alert("로그인 후 다시 이용해주세요");
-          // cookies.remove("jwtToken");
-          // cookies.remove("userId");
-          // document.location.href = "/";
-        } else {
-          console.log(err.response);
-        }
-      });
-  };
-
-  const [EnterchatRoomsData, setEnterChatRoomsData] = useState([]);
-  const getEnterChatRoomsList = async () => {
-    await axios(
-      `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/participating`,
-      {
-        method: "GET",
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   Authorization: jwtToken,
-        // },
-      }
-    )
-      .then((res) => {
-        setEnterChatRoomsData(res.data.data);
-      })
-      .catch((err) => {
-        if (err.response.data.error === "Unauthorized") {
-          alert("로그인 후 다시 이용해주세요");
-          // cookies.remove("jwtToken");
-          // cookies.remove("userId");
-          // document.location.href = "/";
-        } else {
-          console.log(err.response);
-        }
-      });
-  };
-
+export default function ChatList({
+  userObj: { userId, jwtToken },
+  allList,
+  refreshAllList,
+  enterList,
+  refreshEnterList,
+}) {
   useEffect(() => {
-    getAllChatRoomsList();
-    getEnterChatRoomsList();
+    refreshAllList();
+    refreshEnterList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -83,7 +29,7 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
         </div>
         <div id="slider" className="rowChatListContainer">
           <div className="allchatList">
-            {AllchatRoomsData.map((chatRoom) => {
+            {allList.map((chatRoom) => {
               return (
                 <ChatRoomPreview
                   key={chatRoom.chatRoomId}
@@ -99,7 +45,7 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
             })}
           </div>
           <div className="enterchatList">
-            {EnterchatRoomsData.map((chatRoom) => {
+            {enterList.map((chatRoom) => {
               return (
                 <ChatRoomPreview
                   key={chatRoom.chatRoomId}
@@ -116,8 +62,8 @@ export default function ChatList({ userObj: { userId, jwtToken } }) {
           </div>
         </div>
         <ToggleBtn
-          getAllChatRoomsList={getAllChatRoomsList}
-          getEnterChatRoomsList={getEnterChatRoomsList}
+          refreshAllList={refreshAllList}
+          refreshEnterList={refreshEnterList}
         />
       </div>
     </>
