@@ -1,6 +1,6 @@
-import { useHistory } from "react-router";
 import "./ChatRoomPreview.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // import Cookies from "universal-cookie";
 
 export default function ChatRoomPreview({
@@ -15,7 +15,6 @@ export default function ChatRoomPreview({
   refreshEnterList,
 }) {
   // const cookies = new Cookies();
-  const history = useHistory();
 
   const joinChat = async () => {
     if (participantState === false) {
@@ -67,7 +66,26 @@ export default function ChatRoomPreview({
   // };
 
   return (
-    <div className="chatContainer">
+    <Link
+      to={
+        participantState
+          ? {
+              pathname: `/chatRoom/${chatRoomId}`,
+              state: {
+                masterId,
+                participantCount,
+                participantState,
+                title,
+                userId,
+                jwtToken,
+              },
+              refreshAllList,
+              refreshEnterList,
+            }
+          : ""
+      }
+      className="chatContainer"
+    >
       <div className="chatNum">{participantCount}</div>
       <div className="chatTitle">{title}</div>
       {!participantState && (
@@ -75,6 +93,6 @@ export default function ChatRoomPreview({
           참여
         </button>
       )}
-    </div>
+    </Link>
   );
 }
