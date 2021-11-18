@@ -9,6 +9,7 @@ export default function ChatSideMenu({
   userId,
   jwtToken,
   isMaster,
+  joinData: { username },
   refreshAllList,
   refreshEnterList,
 }) {
@@ -43,6 +44,7 @@ export default function ChatSideMenu({
     }
   };
 
+  // 채팅방 삭제
   const onChatRoomDel = async () => {
     if (window.confirm("채팅방을 삭제하시겠습니까?") === true) {
       await axios(
@@ -85,6 +87,7 @@ export default function ChatSideMenu({
         }
       )
         .then((res) => {
+          onOutSave();
           refreshAllList();
           refreshEnterList();
           history.push("/");
@@ -95,6 +98,35 @@ export default function ChatSideMenu({
     }
   };
 
+  // 퇴장 메세지 저장
+  const onOutSave = async () => {
+    await axios(
+      "http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats/notifications",
+      {
+        method: "POST",
+        data: {
+          participant: username,
+          roomId: chatRoomId,
+          join: false,
+        },
+      }
+    )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        if (err.response.data.error === "Unauthorized") {
+          alert("로그인 후 다시 이용해주세요");
+          // cookies.remove("jwtToken");
+          // cookies.remove("userId");
+          // document.location.href = "/";
+        } else {
+          console.log(err.response);
+        }
+      });
+  };
+
+  const [enterUSers, setEnterUsers] = useState([]);
   useEffect(() => {
     getEnterUser(showSideMenu);
     // eslint-disable-next-line react-hooks/exhaustive-deps
