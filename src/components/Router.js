@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import {
   Signup,
   Login,
@@ -8,6 +8,7 @@ import {
   Home,
   AddChatRoom,
   ChatRoom,
+  EmptyPage,
 } from "../pages/PagesIndex";
 
 export default function AppRouter({
@@ -32,22 +33,25 @@ export default function AppRouter({
                 enterList={enterList}
                 refreshEnterList={refreshEnterList}
               />
-              <Route exact path="/">
-                <Home
-                  userObj={userObj}
-                  refreshLogin={refreshLogin}
-                  refreshAllList={refreshAllList}
-                  refreshEnterList={refreshEnterList}
-                />
-              </Route>
-              <Route path="/addChatRoom">
-                <AddChatRoom
-                  userObj={userObj}
-                  refreshAllList={refreshAllList}
-                  refreshEnterList={refreshEnterList}
-                />
-              </Route>
-              <Route path="/chatRoom/:chatRoomId" component={ChatRoom} />
+              <Switch>
+                <Route exact path="/">
+                  <Home
+                    userObj={userObj}
+                    refreshLogin={refreshLogin}
+                    refreshAllList={refreshAllList}
+                    refreshEnterList={refreshEnterList}
+                  />
+                </Route>
+                <Route path="/addChatRoom">
+                  <AddChatRoom
+                    userObj={userObj}
+                    refreshAllList={refreshAllList}
+                    refreshEnterList={refreshEnterList}
+                  />
+                </Route>
+                <Route path="/chatRoom/:chatRoomId" component={ChatRoom} />
+                <Route component={EmptyPage} />
+              </Switch>
             </div>
           </>
         ) : (
@@ -59,6 +63,7 @@ export default function AppRouter({
               <KakaoLogin refreshLogin={refreshLogin} />
             </Route>
             <Route path="/signup" component={Signup} />
+            <Route component={EmptyPage} />
           </>
         )}
       </BrowserRouter>

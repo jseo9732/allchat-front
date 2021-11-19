@@ -5,3 +5,4 @@ export { default as ChatList } from "./ChatList/ChatList";
 export { default as Home } from "./Home/Home";
 export { default as AddChatRoom } from "./AddChatRoom/AddChatRoom";
 export { default as ChatRoom } from "./ChatRoom/ChatRoom";
+export { default as EmptyPage } from "./EmptyPage/EmptyPage";
