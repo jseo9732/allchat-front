@@ -23,7 +23,6 @@ export default function ChatInput({ chatRoomId, userId }) {
     )
       .then((res) => {
         setInputValue("");
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
