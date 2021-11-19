@@ -1,30 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { EventSourcePolyfill } from "event-source-polyfill";
 
 export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
-  const [joinData, setJoinData] = useState([]);
-  const [eventSource, setEventSource] = useState([]);
-  useEffect(() => {
-    axios
+  let eventSource = undefined;
+
+  const getJoinData = async () => {
+    await axios
       .get(
         `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
       )
       .then((res) => {
-        setJoinData(res.data.data);
-        setEventSource(
-          new EventSourcePolyfill(
-            `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chatRooms/${chatRoomId}/chats?username=${res.data.data.username}&joinDateTime=${res.data.data.joinDateTime}`,
-            {
-              headers: {
-                Authorization: jwtToken,
-              },
-            }
-          )
-        );
+        getEventSource(res.data.data);
       });
+  };
 
-    //SSE 연결하기
+  const getEventSource = (joinData, out) => {
+    eventSource = new EventSourcePolyfill(
+      `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chatRooms/${chatRoomId}/chats?username=${joinData.username}&joinDateTime=${joinData.joinDateTime}`,
+      {
+        headers: {
+          Authorization: jwtToken,
+        },
+      }
+    );
+    showChat(eventSource, joinData);
+  };
+
+  const showChat = (eventSource, joinData) => {
+    // SSE 연결하기
     eventSource.onmessage = (e) => {
       const data = JSON.parse(e.data);
       if (data.sender === null) {
@@ -38,21 +42,7 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
         initReceivedMessage(data);
       }
     };
-
-    eventSource.onopen = () => {
-      console.log("Connection to server opened.");
-    };
-    eventSource.onerror = () => {
-      console.log("EventSource failed.");
-      eventSource.close();
-    };
-
-    return () => {
-      eventSource.close();
-      console.log("eventsource closed");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [eventSource]);
+  };
 
   // 입퇴장 알림 초기화하기
   const initNoti = (data) => {
@@ -122,6 +112,15 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
               <span class="date_time">${convertTime}</span>
             </div>`;
   };
+
+  useEffect(() => {
+    getJoinData();
+
+    return () => {
+      eventSource.close();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatRoomId]);
 
   return (
     <div className="chatContents">
