@@ -56,14 +56,16 @@ export default function AppRouter({
           </>
         ) : (
           <>
-            <Route exact path="/">
-              <Login refreshLogin={refreshLogin} />
-            </Route>
-            <Route path="/kakaologin">
-              <KakaoLogin refreshLogin={refreshLogin} />
-            </Route>
-            <Route path="/signup" component={Signup} />
-            <Route component={EmptyPage} />
+            <Switch>
+              <Route exact path="/">
+                <Login refreshLogin={refreshLogin} />
+              </Route>
+              <Route path="/kakaologin">
+                <KakaoLogin refreshLogin={refreshLogin} />
+              </Route>
+              <Route path="/signup" component={Signup} />
+              <Route component={EmptyPage} />
+            </Switch>
           </>
         )}
       </BrowserRouter>
