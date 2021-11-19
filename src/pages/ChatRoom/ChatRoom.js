@@ -23,28 +23,6 @@ export default function ChatRoom({
     setShowSideMenu(!showSideMenu);
   };
 
-  // 채팅 메세지 저장
-  const onSaveMsgSubmit = async (e) => {
-    e.preventDefault();
-    await axios(
-      `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats`,
-      {
-        method: "POST",
-        data: {
-          msg: e.target.chatValue.value,
-          sender: joinData.username,
-          roomId: chatRoomId,
-        },
-      }
-    )
-      .then((res) => {
-        console.log(res.data);
-        e.target.chatValue.value = "";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const [joinData, setJoinData] = useState([]);
   useEffect(() => {
@@ -95,20 +73,7 @@ export default function ChatRoom({
             jwtToken={jwtToken}
             joinData={joinData}
           />
-          <div className="chatInputContainer">
-            <form className="chatInputForm" onSubmit={onSaveMsgSubmit}>
-              <textarea
-                name="chatValue"
-                id="chatValue"
-                className="chatInput"
-                type="text"
-                autoFocus
-              />
-              <button id="submitBtn" className="inputBtn" type="submit">
-                전송
-              </button>
-            </form>
-          </div>
+          <ChatInput chatRoomId={chatRoomId} userId={userId} />
           <ChatSideMenu
             showSideMenu={showSideMenu}
             chatRoomId={chatRoomId}
