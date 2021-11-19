@@ -115,7 +115,6 @@ export default function ChatRoom({
             userId={userId}
             jwtToken={jwtToken}
             isMaster={masterId === Number(userId)}
-            joinData={joinData}
             refreshAllList={refreshAllList}
             refreshEnterList={refreshEnterList}
           />

@@ -9,7 +9,6 @@ export default function ChatSideMenu({
   userId,
   jwtToken,
   isMaster,
-  joinData: { username },
   refreshAllList,
   refreshEnterList,
 }) {
@@ -75,7 +74,7 @@ export default function ChatSideMenu({
       {
         method: "POST",
         data: {
-          participant: username,
+          participant: joinData.username,
           roomId: chatRoomId,
           join: false,
         },
@@ -97,6 +96,7 @@ export default function ChatSideMenu({
   };
 
   const [enterUSers, setEnterUsers] = useState([]);
+  const [joinData, setJoinData] = useState([]);
   useEffect(() => {
     if (showSideMenu) {
       axios(
@@ -116,6 +116,13 @@ export default function ChatSideMenu({
           } else {
             console.log(err.response);
           }
+        });
+      axios
+        .get(
+          `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+        )
+        .then((res) => {
+          setJoinData(res.data.data);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
