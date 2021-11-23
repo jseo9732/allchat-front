@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import "./ChatSideMenu.css";
 // import Cookies from "universal-cookie";
 
 export default function ChatSideMenu({

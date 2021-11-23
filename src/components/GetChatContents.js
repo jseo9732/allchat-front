@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { EventSourcePolyfill } from "event-source-polyfill";
+import "./GetChatContents.css";
 
 export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
   let eventSource = undefined;

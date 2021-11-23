@@ -1,0 +1,73 @@
+.sideMenuContainer {
+  width: 300px;
+  height: 608px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: -300px;
+  transition: 850ms;
+  border-bottom-right-radius: 20px;
+}
+
+.sideMenuContainer.active {
+  right: 0;
+  transition: 350ms;
+}
+
+.sideMenu {
+  z-index: 2;
+  width: 300px;
+  height: 608px;
+  background-color: white;
+  opacity: 1;
+  border-bottom-right-radius: 20px;
+}
+
+.chatMemberContainer {
+  width: 300px;
+  height: 548px;
+  border-top: 2px solid lightgray;
+  border-bottom: 2px solid lightgray;
+}
+
+.chatMemberTitle {
+  height: 65px;
+  font-size: 18px;
+  border-bottom: 1px solid lightgray;
+  padding: 20px;
+}
+
+.chatMemberBox {
+  height: 480px;
+  overflow: auto;
+}
+
+.chatMember {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.btnBox {
+  width: 300px;
+  height: 60px;
+  display: flex;
+  align-content: center;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.btnBox button {
+  height: 40px;
+  padding: 0 10px;
+  background-color: #00cc45;
+  border: 0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: white;
+}
+
+.btnBox button:hover {
+  background-color: #00a337;
+  cursor: pointer;
+}

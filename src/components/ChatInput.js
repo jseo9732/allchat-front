@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./ChatInput.css";
 
 export default function ChatInput({ chatRoomId, userId }) {
   const [inputValue, setInputValue] = useState("");
