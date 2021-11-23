@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ChatList.css";
-import AddChatRoomBtn from "../../components/AddChatRoomBtn";
-import ChatRoomPreview from "../../components/ChatRoomPreview";
-import ToggleBtn from "../../components/ToggleBtn";
+import AddChatRoomBtn from "../../components/ChatListComponents/AddChatRoomBtn";
+import ChatRoomPreview from "../../components/ChatListComponents/ChatRoomPreview";
+import ToggleBtn from "../../components/ChatListComponents/ToggleBtn";
 
 export default function ChatList({
   userObj: { userId, jwtToken },
