@@ -21,10 +21,6 @@
   text-decoration: none;
 }
 
-.addChatIcon {
-  width: 26px;
-}
-
 .rowChatListContainer {
   height: 530px;
   display: flex;
@@ -43,34 +39,4 @@
   width: 400px;
   height: 530px;
   overflow: auto;
-}
-
-.toggleBtnContainer {
-  display: flex;
-  text-align: center;
-}
-
-.allChatBtn {
-  height: 78px;
-  border-bottom-left-radius: 20px;
-  width: 200px;
-  padding: 15px;
-  font-size: 13px;
-}
-
-.enterChatBtn {
-  height: 78px;
-  width: 200px;
-  padding: 15px;
-  font-size: 13px;
-}
-
-.allChatBtn:hover,
-.enterChatBtn:hover {
-  background-color: #f4f3f5;
-}
-
-.ChatBtnImg {
-  width: 30px;
-  height: 30px;
 }
