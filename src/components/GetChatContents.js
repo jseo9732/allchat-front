@@ -15,7 +15,7 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
       });
   };
 
-  const getEventSource = (joinData, out) => {
+  const getEventSource = (joinData) => {
     eventSource = new EventSourcePolyfill(
       `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chatRooms/${chatRoomId}/chats?username=${joinData.username}&joinDateTime=${joinData.joinDateTime}`,
       {
@@ -53,6 +53,10 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
     notiBox.innerHTML = getNotiMsgBox(data);
 
     chatBox.appendChild(notiBox);
+
+    //스크롤 따라가기
+    document.getElementById("chat-box").scrollTop =
+      document.getElementById("chat-box").scrollHeight;
   };
 
   //파란박스 초기화하기
@@ -66,7 +70,8 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
     chatBox.appendChild(sentBox);
 
     //스크롤 따라가기
-    document.documentElement.scrollTop = document.body.scrollHeight;
+    document.getElementById("chat-box").scrollTop =
+      document.getElementById("chat-box").scrollHeight;
   };
 
   //회색박스 초기화하기
@@ -80,7 +85,8 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
     chatBox.appendChild(receivedBox);
 
     //스크롤 따라가기
-    document.documentElement.scrollTop = document.body.scrollHeight;
+    document.getElementById("chat-box").scrollTop =
+      document.getElementById("chat-box").scrollHeight;
   };
 
   //입퇴장 박스 만들기
