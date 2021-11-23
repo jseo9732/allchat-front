@@ -2,11 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
-// import Cookies from "universal-cookie";
 
 export default function Login({ refreshLogin }) {
-  // const cookies = new Cookies();
-
   // 아이디 입력창 관련
   const [userName, setUserName] = useState("");
 
@@ -56,16 +53,6 @@ export default function Login({ refreshLogin }) {
         const userObj = res.data;
         refreshLogin(userObj);
         axios.defaults.headers.common["Authorization"] = `${userObj.jwtToken}`;
-        // const userId = res.data.userId;
-        // const accessToken = res.data.jwtToken;
-        // cookies.set("myToken", accessToken, {
-        //   path: "/",
-        //   maxAge: 60 * 60 * 24 * 30,
-        // });
-        // cookies.set("userId", userId, {
-        //   path: "/",
-        //   maxAge: 60 * 60 * 24 * 30,
-        // });
       })
       .catch((err) => {
         console.log(err);

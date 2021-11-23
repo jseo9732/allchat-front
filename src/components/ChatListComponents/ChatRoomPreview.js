@@ -1,7 +1,6 @@
 import "./ChatRoomPreview.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import Cookies from "universal-cookie";
 
 export default function ChatRoomPreview({
   chatRoomId,
@@ -14,8 +13,6 @@ export default function ChatRoomPreview({
   refreshAllList,
   refreshEnterList,
 }) {
-  // const cookies = new Cookies();
-
   // 1. 채팅 참여 요청
   const joinChat = async () => {
     await axios(
@@ -31,29 +28,18 @@ export default function ChatRoomPreview({
           chatRoomId: chatRoomId,
         },
       }
-    )
-      .then((res) => {
-        refreshAllList();
-        refreshEnterList();
-        // 2. 채팅방 입장 시간 조회
-        axios
-          .get(
-            `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
-          )
-          .then((res) => {
-            onJoinSave(res.data.data.username);
-          });
-      })
-      .catch((err) => {
-        if (err.response.data.error === "Unauthorized") {
-          alert("로그인 후 다시 이용해주세요");
-          // cookies.remove("jwtToken");
-          // cookies.remove("userId");
-          // document.location.href = "/";
-        } else {
-          console.log(err.response);
-        }
-      });
+    ).then((res) => {
+      refreshAllList();
+      refreshEnterList();
+      // 2. 채팅방 입장 시간 조회
+      axios
+        .get(
+          `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+        )
+        .then((res) => {
+          onJoinSave(res.data.data.username);
+        });
+    });
   };
 
   // 3. 참여 메세지 저장
@@ -68,16 +54,7 @@ export default function ChatRoomPreview({
           join: true,
         },
       }
-    ).catch((err) => {
-      if (err.response.data.error === "Unauthorized") {
-        alert("로그인 후 다시 이용해주세요");
-        // cookies.remove("jwtToken");
-        // cookies.remove("userId");
-        // document.location.href = "/";
-      } else {
-        console.log(err.response);
-      }
-    });
+    );
   };
 
   return (

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import "./Home.css";
-// import Cookies from "universal-cookie";
 
 export default function Home({
   userObj,
@@ -8,13 +7,8 @@ export default function Home({
   refreshAllList,
   refreshEnterList,
 }) {
-  // const cookies = new Cookies();
-
   const onLogoutClick = () => {
     refreshLogin(null);
-    // cookies.remove("myToken");
-    // cookies.remove("userId");
-    // alert("로그아웃 되었습니다.");
   };
 
   useEffect(() => {
