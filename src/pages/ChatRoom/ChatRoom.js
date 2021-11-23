@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
-import GetChatContents from "../../components/GetChatContents";
-import ChatInput from "../../components/ChatInput";
-import ChatSideMenu from "../../components/ChatSideMenu";
+import GetChatContents from "../../components/ChatRoomComponents/GetChatContents";
+import ChatInput from "../../components/ChatRoomComponents/ChatInput";
+import ChatSideMenu from "../../components/ChatRoomComponents/ChatSideMenu";
 import "./ChatRoom.css";
 
 export default function ChatRoom({
