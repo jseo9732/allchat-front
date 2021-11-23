@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import "./KakaoLogin.css";
 // import Cookies from "universal-cookie";
 
 export default function KakaoLogin({ refreshLogin }) {
@@ -46,5 +47,9 @@ export default function KakaoLogin({ refreshLogin }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div>카카오 로그인 중입니다.</div>;
+  return (
+    <div className="KakaoLoginContainer">
+      <div className="KakaoLogin">카카오 로그인 중입니다.</div>
+    </div>
+  );
 }
