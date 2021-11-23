@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import {
   Signup,
   Login,
@@ -22,7 +22,7 @@ export default function AppRouter({
 }) {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         {isLoggedin ? (
           <>
             <div className="firstContainer">
@@ -68,7 +68,7 @@ export default function AppRouter({
             </Switch>
           </>
         )}
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
