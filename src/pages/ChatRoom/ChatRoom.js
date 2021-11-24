@@ -41,9 +41,15 @@ export default function ChatRoom({
           </div>
           <div className="chatRoomImgContainer">
             {showSideMenu ? (
-              <i class="fas fa-times chatRoomImg" onClick={onSideMenuClick}></i>
+              <i
+                className="fas fa-times chatRoomImg"
+                onClick={onSideMenuClick}
+              ></i>
             ) : (
-              <i class="fas fa-bars chatRoomImg" onClick={onSideMenuClick}></i>
+              <i
+                className="fas fa-bars chatRoomImg"
+                onClick={onSideMenuClick}
+              ></i>
             )}
           </div>
         </div>
