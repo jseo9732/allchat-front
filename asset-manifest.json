@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/allchat-front/static/css/main.4975e5a7.chunk.css",
-    "main.js": "/allchat-front/static/js/main.45807c64.chunk.js",
-    "main.js.map": "/allchat-front/static/js/main.45807c64.chunk.js.map",
+    "main.css": "/allchat-front/static/css/main.85567c3d.chunk.css",
+    "main.js": "/allchat-front/static/js/main.fa79374a.chunk.js",
+    "main.js.map": "/allchat-front/static/js/main.fa79374a.chunk.js.map",
     "runtime-main.js": "/allchat-front/static/js/runtime-main.0a584b85.js",
     "runtime-main.js.map": "/allchat-front/static/js/runtime-main.0a584b85.js.map",
-    "static/js/2.23b0ad6d.chunk.js": "/allchat-front/static/js/2.23b0ad6d.chunk.js",
-    "static/js/2.23b0ad6d.chunk.js.map": "/allchat-front/static/js/2.23b0ad6d.chunk.js.map",
+    "static/js/2.6dbb4a65.chunk.js": "/allchat-front/static/js/2.6dbb4a65.chunk.js",
+    "static/js/2.6dbb4a65.chunk.js.map": "/allchat-front/static/js/2.6dbb4a65.chunk.js.map",
     "index.html": "/allchat-front/index.html",
-    "static/css/main.4975e5a7.chunk.css.map": "/allchat-front/static/css/main.4975e5a7.chunk.css.map",
-    "static/js/2.23b0ad6d.chunk.js.LICENSE.txt": "/allchat-front/static/js/2.23b0ad6d.chunk.js.LICENSE.txt"
+    "static/css/main.85567c3d.chunk.css.map": "/allchat-front/static/css/main.85567c3d.chunk.css.map",
+    "static/js/2.6dbb4a65.chunk.js.LICENSE.txt": "/allchat-front/static/js/2.6dbb4a65.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0a584b85.js",
-    "static/js/2.23b0ad6d.chunk.js",
-    "static/css/main.4975e5a7.chunk.css",
-    "static/js/main.45807c64.chunk.js"
+    "static/js/2.6dbb4a65.chunk.js",
+    "static/css/main.85567c3d.chunk.css",
+    "static/js/main.fa79374a.chunk.js"
   ]
 }
