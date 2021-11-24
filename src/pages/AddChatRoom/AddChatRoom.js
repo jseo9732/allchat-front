@@ -12,7 +12,7 @@ export default function AddChatRoom({
   const onBackClick = () => {
     refreshAllList();
     refreshEnterList();
-    history.goBack();
+    history.push("/");
   };
 
   const onaddRoomSubmit = async (e) => {
@@ -38,12 +38,10 @@ export default function AddChatRoom({
       <div className="AddChatRoomContainer">
         <div className="AddChatRoomTopBar">
           <div className="AddChatRoomImgContainer">
-            <img
+            <i
+              className="fas fa-chevron-left AddChatRoomImg"
               onClick={onBackClick}
-              className="AddChatRoomImg"
-              src="/image/chevron-left-solid.svg"
-              alt="뒤로가기"
-            />
+            ></i>
           </div>
           <div className="AddChatRoomTitle">새로운 채팅</div>
         </div>

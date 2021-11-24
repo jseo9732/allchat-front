@@ -30,24 +30,21 @@ export default function ChatRoom({
       <div className="chatRoomContainer">
         <div className="chatRoomTopBar">
           <div className="chatRoomImgContainer">
-            <img
+            <i
+              className="fas fa-chevron-left chatRoomImg"
               onClick={onBackClick}
-              className="chatRoomImg"
-              src="/image/chevron-left-solid.svg"
-              alt="뒤로가기"
-            />
+            ></i>
           </div>
           <div className="chatRoomTitleContainer">
             <span className="chatRoomTitle">{title}</span>
             <span className="chatRoomNum">({participantCount})</span>
           </div>
           <div className="chatRoomImgContainer">
-            <img
-              onClick={onSideMenuClick}
-              className="chatRoomImg"
-              src="/image/bars-solid.svg"
-              alt="채팅 메뉴"
-            />
+            {showSideMenu ? (
+              <i class="fas fa-times chatRoomImg" onClick={onSideMenuClick}></i>
+            ) : (
+              <i class="fas fa-bars chatRoomImg" onClick={onSideMenuClick}></i>
+            )}
           </div>
         </div>
         <div className="sideMenuFlex">

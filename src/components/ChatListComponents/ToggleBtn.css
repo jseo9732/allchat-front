@@ -21,9 +21,10 @@
 .allChatBtn:hover,
 .enterChatBtn:hover {
   background-color: #f4f3f5;
+  cursor: pointer;
 }
 
 .ChatBtnImg {
-  width: 30px;
-  height: 30px;
+  font-size: 30px;
+  margin-bottom: 3px;
 }

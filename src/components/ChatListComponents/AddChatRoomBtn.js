@@ -4,24 +4,26 @@ import "./AddChatRoomBtn.css";
 
 export default function AddChatRoomBtn() {
   const history = useHistory();
-  const [addImgSrc, setaddImgSrc] = useState("/image/chat_white.png");
+  const [isOnMouseOver, setIsOnMouseOver] = useState(false);
   const onMouseOver = () => {
-    setaddImgSrc("/image/chat_black.png");
+    setIsOnMouseOver(true);
   };
   const onMouseOut = () => {
-    setaddImgSrc("/image/chat_white.png");
+    setIsOnMouseOver(false);
   };
   const onChatAddClick = () => {
     history.push("/addChatRoom");
   };
   return (
-    <img
+    <i
+      className={
+        isOnMouseOver
+          ? "fas fa-comment-medical addChatIcon active"
+          : "fas fa-comment-medical addChatIcon"
+      }
       onClick={onChatAddClick}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
-      className="addChatIcon"
-      alt="chat_icon"
-      src={addImgSrc}
-    />
+    ></i>
   );
 }

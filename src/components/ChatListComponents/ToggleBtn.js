@@ -32,33 +32,17 @@ export default function ToggleBtn({ refreshAllList, refreshEnterList }) {
     <div className="toggleBtnContainer">
       <div className="allChatBtn" onClick={onAllChatClick}>
         {btnImg ? (
-          <img
-            className="ChatBtnImg"
-            src="/image/comment-regular.svg"
-            alt="전체 채팅"
-          />
+          <i className="far fa-comment ChatBtnImg"></i>
         ) : (
-          <img
-            className="ChatBtnImg"
-            src="/image/comment-solid.svg"
-            alt="전체 채팅"
-          />
+          <i className="fas fa-comment ChatBtnImg"></i>
         )}
         <div>전체 채팅</div>
       </div>
       <div className="enterChatBtn" onClick={onEnterChatClick}>
         {btnImg ? (
-          <img
-            className="ChatBtnImg"
-            src="/image/comments-solid.svg"
-            alt="참여 채팅"
-          />
+          <i className="fas fa-comments ChatBtnImg"></i>
         ) : (
-          <img
-            className="ChatBtnImg"
-            src="/image/comments-regular.svg"
-            alt="참여 채팅"
-          />
+          <i className="far fa-comments ChatBtnImg"></i>
         )}
         <div>참여 채팅</div>
       </div>
