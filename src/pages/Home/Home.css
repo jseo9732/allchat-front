@@ -25,3 +25,8 @@
   top: 30px;
   right: 30px;
 }
+
+.LogoutBtn:hover {
+  background-color: #00a337;
+  cursor: pointer;
+}
