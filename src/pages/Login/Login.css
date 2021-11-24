@@ -29,7 +29,7 @@
 }
 
 .loginBtn {
-  width: 300px;
+  width: 314px;
   height: 45px;
   margin-top: 50px;
   margin-bottom: 15px;
@@ -37,15 +37,35 @@
   border: 0;
   border-radius: 5px;
   color: white;
+  font-size: 15px;
 }
 
 .loginBtn:hover {
-  background-color: #19d157;
+  background-color: #00a337;
 }
 
-.kakaoLogin {
-  display: block;
-  margin-bottom: 20px;
+.KakaoLoginBtn {
+  display: flex;
+  width: 314px;
+  height: 45px;
+  background-color: #fee500;
+  border-radius: 5px;
+  color: #000000;
+  text-decoration: none;
+  padding: 13px;
+}
+
+.KakaoLoginBtn:hover {
+  background-color: #cbb700;
+}
+
+.KakaoLoginBtn i {
+  font-size: 20px;
+}
+
+.KakaoLoginBtn div {
+  font-size: 15px;
+  width: 100%;
 }
 
 .toSignupBtn {

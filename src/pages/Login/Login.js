@@ -96,10 +96,11 @@ export default function Login({ refreshLogin }) {
           로그인
         </button>
         <a
-          className="kakaoLoginBtn"
+          className="KakaoLoginBtn"
           href={`https://kauth.kakao.com/oauth/authorize?client_id=3e716bc2780a7b5fe1da319c4487c6f9&redirect_uri=http://localhost:3000/kakaologin&response_type=code`}
         >
-          <img alt="카카오 로그인" src="/image/kakao_login_medium_wide.png" />
+          <i class="fas fa-comment"></i>
+          <div>카카오 로그인</div>
         </a>
       </form>
       <Link to="/signup" className="toSignupBtn">
