@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/allchat-front/static/css/main.febffb51.chunk.css",
-    "main.js": "/allchat-front/static/js/main.e4417c0d.chunk.js",
-    "main.js.map": "/allchat-front/static/js/main.e4417c0d.chunk.js.map",
+    "main.js": "/allchat-front/static/js/main.a1d13236.chunk.js",
+    "main.js.map": "/allchat-front/static/js/main.a1d13236.chunk.js.map",
     "runtime-main.js": "/allchat-front/static/js/runtime-main.0a584b85.js",
     "runtime-main.js.map": "/allchat-front/static/js/runtime-main.0a584b85.js.map",
     "static/js/2.6dbb4a65.chunk.js": "/allchat-front/static/js/2.6dbb4a65.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.0a584b85.js",
     "static/js/2.6dbb4a65.chunk.js",
     "static/css/main.febffb51.chunk.css",
-    "static/js/main.e4417c0d.chunk.js"
+    "static/js/main.a1d13236.chunk.js"
   ]
 }
