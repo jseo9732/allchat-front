@@ -36,19 +36,16 @@ export default function Login({ refreshLogin }) {
   };
 
   const getUserObj = async () => {
-    await axios(
-      "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: {
-          username: userName,
-          password: userPw,
-        },
-      }
-    )
+    await axios("https://main.psblues.site/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        username: userName,
+        password: userPw,
+      },
+    })
       .then((res) => {
         const userObj = res.data;
         refreshLogin(userObj);
@@ -97,9 +94,9 @@ export default function Login({ refreshLogin }) {
         </button>
         <a
           className="KakaoLoginBtn"
-          href={`https://kauth.kakao.com/oauth/authorize?client_id=3e716bc2780a7b5fe1da319c4487c6f9&redirect_uri=http://localhost:3000/kakaologin&response_type=code`}
+          href={`https://kauth.kakao.com/oauth/authorize?client_id=3e716bc2780a7b5fe1da319c4487c6f9&redirect_uri=https://jseo9732.github.io/allchat-front/kakaologin&response_type=code`}
         >
-          <i class="fas fa-comment"></i>
+          <i className="fas fa-comment"></i>
           <div>카카오 로그인</div>
         </a>
       </form>

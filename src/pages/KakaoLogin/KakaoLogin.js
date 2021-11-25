@@ -9,15 +9,12 @@ export default function KakaoLogin({ refreshLogin }) {
 
   useEffect(() => {
     const getKakaoToken = async () => {
-      await axios(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/login/kakao?code=${code}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-          },
-        }
-      )
+      await axios(`https://main.psblues.site/login/kakao?code=${code}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+        },
+      })
         .then((res) => {
           const userObj = res.data.data;
           refreshLogin(userObj);

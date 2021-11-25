@@ -15,26 +15,19 @@ export default function ChatRoomPreview({
 }) {
   // 1. 채팅 참여 요청
   const joinChat = async () => {
-    await axios(
-      "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/joins",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: jwtToken,
-        },
-        data: {
-          userId: userId,
-          chatRoomId: chatRoomId,
-        },
-      }
-    ).then((res) => {
+    await axios("https://main.psblues.site/joins", {
+      method: "POST",
+      data: {
+        userId: userId,
+        chatRoomId: chatRoomId,
+      },
+    }).then((res) => {
       refreshAllList();
       refreshEnterList();
       // 2. 채팅방 입장 시간 조회
       axios
         .get(
-          `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+          `https://main.psblues.site/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
         )
         .then((res) => {
           onJoinSave(res.data.data.username);
@@ -44,17 +37,14 @@ export default function ChatRoomPreview({
 
   // 3. 참여 메세지 저장
   const onJoinSave = async (username) => {
-    await axios(
-      "http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats/notifications",
-      {
-        method: "POST",
-        data: {
-          participant: username,
-          roomId: chatRoomId,
-          join: true,
-        },
-      }
-    );
+    await axios("https://chatting.psblues.site/chats/notifications", {
+      method: "POST",
+      data: {
+        participant: username,
+        roomId: chatRoomId,
+        join: true,
+      },
+    });
   };
 
   return (

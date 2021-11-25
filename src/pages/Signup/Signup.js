@@ -30,18 +30,15 @@ export default function Signup() {
   };
 
   const userIdDuplicate = async (userId) => {
-    await axios(
-      "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/auth/duplicate",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: {
-          username: userId,
-        },
-      }
-    )
+    await axios("https://main.psblues.site/auth/duplicate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        username: userId,
+      },
+    })
       .then((res) => {
         setIsUserIdDup(!res.data.data);
         setIsNotUserIdDup(res.data.data);
@@ -101,19 +98,16 @@ export default function Signup() {
       !isUserPwCheckNull &&
       !passwordError
     ) {
-      await axios(
-        "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            username: userId,
-            password: userPw,
-          },
-        }
-      )
+      await axios("https://main.psblues.site/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          username: userId,
+          password: userPw,
+        },
+      })
         .then((res) => {
           alert("환영합니다.");
           history.push("/");

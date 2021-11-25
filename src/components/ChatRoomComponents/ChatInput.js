@@ -11,17 +11,14 @@ export default function ChatInput({ chatRoomId, userId }) {
   // 채팅 메세지 저장
   const onSaveMsgSubmit = async (e) => {
     e.preventDefault();
-    await axios(
-      `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats`,
-      {
-        method: "POST",
-        data: {
-          msg: inputValue,
-          sender: joinData.username,
-          roomId: chatRoomId,
-        },
-      }
-    )
+    await axios(`https://chatting.psblues.site/chats`, {
+      method: "POST",
+      data: {
+        msg: inputValue,
+        sender: joinData.username,
+        roomId: chatRoomId,
+      },
+    })
       .then((res) => {
         setInputValue("");
       })
@@ -41,7 +38,7 @@ export default function ChatInput({ chatRoomId, userId }) {
     // 채팅방 입장 시간 조회
     axios
       .get(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+        `https://main.psblues.site/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
       )
       .then((res) => {
         setJoinData(res.data.data);

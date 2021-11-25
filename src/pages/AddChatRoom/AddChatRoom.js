@@ -17,16 +17,13 @@ export default function AddChatRoom({
 
   const onaddRoomSubmit = async (e) => {
     e.preventDefault();
-    axios(
-      "http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms",
-      {
-        method: "POST",
-        data: {
-          masterId: userObj.userId,
-          title: e.target.chatRoomTitle.value,
-        },
-      }
-    ).then(() => {
+    axios("https://main.psblues.site/chatrooms", {
+      method: "POST",
+      data: {
+        masterId: userObj.userId,
+        title: e.target.chatRoomTitle.value,
+      },
+    }).then(() => {
       refreshAllList();
       refreshEnterList();
       history.push("/");

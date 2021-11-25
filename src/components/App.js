@@ -12,13 +12,9 @@ export default function App() {
   const [allList, setAllList] = useState([]);
   const refreshAllList = async () => {
     if (Boolean(userObj)) {
-      await axios
-        .get(
-          `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms`
-        )
-        .then((res) => {
-          setAllList(res.data.data);
-        });
+      await axios.get(`https://main.psblues.site/chatrooms`).then((res) => {
+        setAllList(res.data.data);
+      });
       // .catch((err) => {
       //   if (err.response.data.error === "Unauthorized") {
       //     alert("로그인 후 다시 이용해주세요");
@@ -32,9 +28,7 @@ export default function App() {
   const refreshEnterList = async () => {
     if (Boolean(userObj)) {
       await axios
-        .get(
-          `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/participating`
-        )
+        .get(`https://main.psblues.site/chatrooms/participating`)
         .then((res) => {
           setEnterList(res.data.data);
         });

@@ -17,12 +17,9 @@ export default function ChatSideMenu({
   // 채팅방 삭제
   const onChatRoomDel = async () => {
     if (window.confirm("채팅방을 삭제하시겠습니까?") === true) {
-      await axios(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}`,
-        {
-          method: "DELETE",
-        }
-      ).then((res) => {
+      await axios(`https://main.psblues.site/chatrooms/${chatRoomId}`, {
+        method: "DELETE",
+      }).then((res) => {
         refreshAllList();
         refreshEnterList();
         history.push("/");
@@ -33,16 +30,13 @@ export default function ChatSideMenu({
   // 채팅방 나가기
   const onChatRoomOut = async () => {
     if (window.confirm("채팅방을 나가시겠습니까?") === true) {
-      await axios(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/joins`,
-        {
-          method: "DELETE",
-          data: {
-            userId: userId,
-            chatRoomId: chatRoomId,
-          },
-        }
-      )
+      await axios(`https://main.psblues.site/joins`, {
+        method: "DELETE",
+        data: {
+          userId: userId,
+          chatRoomId: chatRoomId,
+        },
+      })
         .then((res) => {
           onOutSave();
           refreshAllList();
@@ -57,35 +51,29 @@ export default function ChatSideMenu({
 
   // 퇴장 메세지 저장
   const onOutSave = async () => {
-    await axios(
-      "http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chats/notifications",
-      {
-        method: "POST",
-        data: {
-          participant: joinData.username,
-          roomId: chatRoomId,
-          join: false,
-        },
-      }
-    );
+    await axios("https://chatting.psblues.site/chats/notifications", {
+      method: "POST",
+      data: {
+        participant: joinData.username,
+        roomId: chatRoomId,
+        join: false,
+      },
+    });
   };
 
   const [enterUSers, setEnterUsers] = useState([]);
   const [joinData, setJoinData] = useState([]);
   useEffect(() => {
     if (showSideMenu) {
-      axios(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins`,
-        {
-          method: "GET",
-        }
-      ).then((res) => {
+      axios(`https://main.psblues.site/chatrooms/${chatRoomId}/joins`, {
+        method: "GET",
+      }).then((res) => {
         setEnterUsers(res.data.data);
       });
 
       axios
         .get(
-          `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+          `https://main.psblues.site/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
         )
         .then((res) => {
           setJoinData(res.data.data);

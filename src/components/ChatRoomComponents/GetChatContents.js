@@ -9,7 +9,7 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
   const getJoinData = async () => {
     await axios
       .get(
-        `http://eballchatmain-env.eba-ky3tiuhm.ap-northeast-2.elasticbeanstalk.com/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
+        `https://main.psblues.site/chatrooms/${chatRoomId}/joins/time?userId=${userId}`
       )
       .then((res) => {
         getEventSource(res.data.data);
@@ -18,7 +18,7 @@ export default function GetChatContents({ chatRoomId, userId, jwtToken }) {
 
   const getEventSource = (joinData) => {
     eventSource = new EventSourcePolyfill(
-      `http://eballchatchatting-env.eba-gfegivem.ap-northeast-2.elasticbeanstalk.com/chatRooms/${chatRoomId}/chats?username=${joinData.username}&joinDateTime=${joinData.joinDateTime}`,
+      `https://chatting.psblues.site/chatRooms/${chatRoomId}/chats?username=${joinData.username}&joinDateTime=${joinData.joinDateTime}`,
       {
         headers: {
           Authorization: jwtToken,
