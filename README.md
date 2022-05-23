@@ -8,7 +8,7 @@ SSE프로토콜을 활용한 실시간 채팅 어플리케이션 - 올챗
 ✏️기능
 =============
 회원가입
-<img src="![AllChat - 회원가입](https://user-images.githubusercontent.com/79249376/169805107-909179af-09c9-4c15-8b59-b8b13a89235e.gif)">
+<img src="![AllChat - 회원가입](https://user-images.githubusercontent.com/79249376/169807719-e0f07ab6-dfa3-4a0a-8c1c-0a12c60a26d9.gif)">
 
 로그인, 로그아웃
 <img src="![AllChat - 로그인, 로그아웃](https://user-images.githubusercontent.com/79249376/169807024-a1de57fd-5594-4815-a3f8-c775a3fdddba.gif)">
