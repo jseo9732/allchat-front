@@ -31,11 +31,19 @@ SSE프로토콜을 활용한 실시간 채팅 어플리케이션 - 올챗
 
 <img src="https://user-images.githubusercontent.com/79249376/169808504-9cc098d3-df7f-48c0-a79c-f088bfad95d5.gif">
 
+
 🧑‍💻 Tech Stack
 =============
 * React
 * 카카오 로그인
 
+API 문서
+=============
+https://documenter.getpostman.com/view/UVC5D6cL?version=latest#025512a9-7f87-435c-bafb-662acbbbc4a2
+
+
+해결 예정
+=============
 
 EventSourcePolyfill에 45초 동안 입,퇴장, 새 메세지가 없으면 연결이 끊겼다가 다시 연결되면서 같은 메세지가 2번 나오는 문제 해결 못함
 
