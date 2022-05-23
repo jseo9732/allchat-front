@@ -8,26 +8,22 @@ SSE프로토콜을 활용한 실시간 채팅 어플리케이션 - 올챗
 ✏️기능
 =============
 회원가입
-<img src="![AllChat - 회원가입](https://user-images.githubusercontent.com/79249376/169807719-e0f07ab6-dfa3-4a0a-8c1c-0a12c60a26d9.gif)">
+<img src="https://user-images.githubusercontent.com/79249376/169807719-e0f07ab6-dfa3-4a0a-8c1c-0a12c60a26d9.gif">
 
 로그인, 로그아웃
-<img src="![AllChat - 로그인, 로그아웃](https://user-images.githubusercontent.com/79249376/169807024-a1de57fd-5594-4815-a3f8-c775a3fdddba.gif)">
+<img src="https://user-images.githubusercontent.com/79249376/169808104-dd1ea768-67e7-4d8c-9152-634a90d6615f.gif">
 
 카카오 로그인
-<img src="![AllChat - 카카오 로그인](https://user-images.githubusercontent.com/79249376/169807157-a55a0cc1-08b7-4fc4-9ea7-92dc1b5f3322.gif)
-">
+<img src="https://user-images.githubusercontent.com/79249376/169808178-b03e2eaa-d5c3-4894-afb0-915102e6eecc.gif">
 
 채팅방 생성, 삭제
-<img src="![AllChat - 채팅방 생성, 삭제](https://user-images.githubusercontent.com/79249376/169807283-0e76452c-ba21-4696-89dc-1ba7db932ee9.gif)
-">
+<img src="https://user-images.githubusercontent.com/79249376/169808322-72a2d9e2-e5e2-4637-bab9-eedd41b26b1c.gif">
 
 전송
-<img src="![AllChat - 전송](https://user-images.githubusercontent.com/79249376/169807364-a2e1db05-195c-4c84-9271-49e311a730f4.gif)
-">
+<img src="https://user-images.githubusercontent.com/79249376/169808414-fddbbb91-cb11-4e89-89fa-686edf43c3f1.gif">
 
 수신
-<img src="![AllChat - 수신](https://user-images.githubusercontent.com/79249376/169807454-b67ffb06-bdeb-4305-81f5-76c81149e06f.gif)
-">
+<img src="https://user-images.githubusercontent.com/79249376/169808504-9cc098d3-df7f-48c0-a79c-f088bfad95d5.gif">
 
 
 
