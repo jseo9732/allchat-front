@@ -8,21 +8,27 @@ SSE프로토콜을 활용한 실시간 채팅 어플리케이션 - 올챗
 ✏️기능
 =============
 회원가입
+
 <img src="https://user-images.githubusercontent.com/79249376/169807719-e0f07ab6-dfa3-4a0a-8c1c-0a12c60a26d9.gif">
 
 로그인, 로그아웃
+
 <img src="https://user-images.githubusercontent.com/79249376/169808104-dd1ea768-67e7-4d8c-9152-634a90d6615f.gif">
 
 카카오 로그인
+
 <img src="https://user-images.githubusercontent.com/79249376/169808178-b03e2eaa-d5c3-4894-afb0-915102e6eecc.gif">
 
 채팅방 생성, 삭제
+
 <img src="https://user-images.githubusercontent.com/79249376/169808322-72a2d9e2-e5e2-4637-bab9-eedd41b26b1c.gif">
 
 전송
+
 <img src="https://user-images.githubusercontent.com/79249376/169808414-fddbbb91-cb11-4e89-89fa-686edf43c3f1.gif">
 
 수신
+
 <img src="https://user-images.githubusercontent.com/79249376/169808504-9cc098d3-df7f-48c0-a79c-f088bfad95d5.gif">
 
 
